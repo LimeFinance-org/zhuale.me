@@ -1,0 +1,17 @@
+{
+  "name": "zhuale.me",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler check",
+    "types": "wrangler types",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 migrations apply zhuale-me-db --local",
+    "db:remote": "wrangler d1 migrations apply zhuale-me-db --remote"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "typescript": "latest",
+    "wrangler": "latest"
+  }
+}

@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: zhualeme
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

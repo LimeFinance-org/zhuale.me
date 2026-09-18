@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 抓了么</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: #f5f5f7; padding: 20px; color: #1d1d1f; }
+        .container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .login-box { max-width: 360px; margin: 60px auto; text-align: center; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+        .login-box button { width: 100%; padding: 12px; background-color: #0071e3; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        h1 { margin-top: 0; margin-bottom: 20px; font-size: 24px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { font-weight: 600; color: #86868b; background-color: #fafafa; }
+        tr:hover { background-color: #f9f9f9; }
+        .status-badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .status-ok { background-color: #e6fffa; color: #2c7a7b; }
+        .status-overdue { background-color: #fff5f5; color: #c53030; }
+        .timestamp { color: #666; font-size: 13px; }
+        .note-text { min-width: 200px; white-space: pre-wrap; color: #666; word-break: break-word; }
+        .error { color: #c53030; font-size: 14px; margin-bottom: 15px; }
+        .loading { color: #86868b; text-align: center; padding: 24px; }
+        @media (max-width: 800px) { .container { padding: 16px; overflow-x: auto; } table { min-width: 980px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="login-view" class="login-box" hidden>
+            <h1>后台管理</h1>
+            <p id="login-error" class="error" hidden>账号或密码错误</p>
+            <form method="POST" action="/baby">
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="username" placeholder="账号" autocomplete="username" required>
+                <input type="password" name="password" placeholder="密码" autocomplete="current-password" required>
+                <button type="submit">登录</button>
+            </form>
+        </section>
+
+        <section id="dashboard-view" hidden>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+                <div>
+                    <h1>用户数据监控 (<span id="user-count">0</span>)</h1>
+                    <p style="margin:6px 0 0;color:#6b7280;font-size:13px;">触发前仅显示匿名占位与打卡元数据；可读预设信息只在触发后出现。</p>
+                </div>
+                <a href="/baby?action=logout" style="color:#ff3b30; text-decoration:none; font-size:14px;">退出登录</a>
+            </div>
+            <div id="loading" class="loading">加载中...</div>
+            <table id="user-table" hidden>
+                <thead><tr><th>用户ID (Hash)</th><th>姓名/代号（触发后）</th><th>紧急联系人（触发后）</th><th>联系方式（触发后）</th><th>备注（触发后）</th><th>打卡周期</th><th>上次打卡</th><th>状态</th><th>操作</th></tr></thead>
+                <tbody id="user-rows"></tbody>
+            </table>
+        </section>
+    </div>
+    <script>
+        const loginView = document.getElementById('login-view');
+        const dashboardView = document.getElementById('dashboard-view');
+        const loading = document.getElementById('loading');
+        const table = document.getElementById('user-table');
+        const rows = document.getElementById('user-rows');
+        const error = document.getElementById('login-error');
+
+        const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+        const periodLabel = (value) => ({ '24h':'24小时', '48h':'48小时', '72h':'72小时', '1w':'一周', 'ALERT':'外部触发' }[value] || value);
+        const formatTime = (value) => { const date = new Date(value); return Number.isNaN(date.getTime()) ? escapeHtml(value) : date.toLocaleString('zh-CN', { hour12: false }); };
+
+        function showLogin() {
+            loginView.hidden = false;
+            dashboardView.hidden = true;
+            if (new URLSearchParams(location.search).get('error') === '1') error.hidden = false;
+        }
+
+        function showDashboard(users) {
+            loginView.hidden = true;
+            dashboardView.hidden = false;
+            loading.hidden = true;
+            table.hidden = false;
+            document.getElementById('user-count').textContent = users.length;
+            rows.innerHTML = users.map((user) => {
+                const status = user.is_overdue
+                    ? `<span class="status-badge status-overdue">已超时 ${escapeHtml(user.overdue_duration)}</span>`
+                    : '<span class="status-badge status-ok">正常</span>';
+                return `<tr>
+                    <td title="${escapeHtml(user.id)}">${escapeHtml(user.id.slice(0, 8))}...</td>
+                    <td>${escapeHtml(user.name)}</td><td>${escapeHtml(user.contact_name)}</td>
+                    <td>${escapeHtml(user.contact_method)}</td><td><div class="note-text">${escapeHtml(user.note)}</div></td>
+                    <td>${escapeHtml(periodLabel(user.period))}</td><td class="timestamp">${formatTime(user.last_checkin)}</td>
+                    <td>${status}</td><td><button data-id="${escapeHtml(user.id)}" class="delete-user" style="background:none;border:none;color:#ff3b30;cursor:pointer;font-size:14px;padding:0;">删除</button></td>
+                </tr>`;
+            }).join('');
+            document.querySelectorAll('.delete-user').forEach((button) => button.addEventListener('click', () => deleteUser(button.dataset.id)));
+        }
+
+        async function deleteUser(id) {
+            if (!confirm('确定要删除该用户吗？此操作不可恢复。')) return;
+            const form = new FormData();
+            form.set('action', 'delete');
+            form.set('id', id);
+            const response = await fetch('/baby', { method: 'POST', body: form });
+            if (response.redirected) location.href = response.url;
+            else alert('删除失败');
+        }
+
+        async function loadUsers() {
+            const response = await fetch('/api/admin/users', { cache: 'no-store' });
+            if (response.status === 401) return showLogin();
+            if (!response.ok) throw new Error('加载失败');
+            const data = await response.json();
+            showDashboard(data.users || []);
+        }
+
+        loadUsers().catch(() => { loading.hidden = true; showLogin(); error.hidden = false; error.textContent = '后台暂时不可用，请稍后重试'; });
+    </script>
+</body>
+</html>
