@@ -1224,10 +1224,16 @@
             position: absolute;
             top: 50%;
             right: 20px;
-            width: 32px;
-            padding: 6px;
+            width: 28px;
+            height: 28px;
+            padding: 0;
             justify-content: center;
             gap: 0;
+            border: 0;
+            border-radius: 0;
+            color: #42577e;
+            background: transparent;
+            box-shadow: none;
             transform: translateY(-50%);
         }
 
@@ -1236,7 +1242,16 @@
         }
 
         .top-banner .github-link:hover {
+            border-color: transparent;
+            background: transparent;
+            color: #243653;
             transform: translateY(calc(-50% - 1px));
+        }
+
+        .top-banner .github-link svg {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
         }
 
         .hero {
