@@ -2,6 +2,8 @@
 
 “抓了么”是一个基于 Cloudflare Workers + D1 的安全打卡与触发上报项目。
 
+当前公开版本唯一支持的运行方式是 Cloudflare Workers + D1；旧版 Go/Docker 服务端入口已从仓库移除，避免不同实现造成隐私边界歧义。
+
 - 官网：[zhuale.me](https://zhuale.me)
 - 官方触发 API：`https://www.zhuale.me/api/sos`
 - 源码仓库：[LimeFinance-org/zhuale.me](https://github.com/LimeFinance-org/zhuale.me)

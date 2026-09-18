@@ -1,6 +1,6 @@
 # zhuale.me → Cloudflare Workers
 
-Cloudflare 版本保留原 Go/Docker 入口，同时新增了 Workers 入口：
+当前版本只使用 Cloudflare Workers + D1：
 
 - `worker/src/index.ts`：Worker API，使用 D1 Prepared Statements。
 - `worker/public/index.html`：静态前端副本。
@@ -50,7 +50,7 @@ npx wrangler deploy
 - 自行部署：下载源码后可以改写 `wrangler.jsonc`、D1 和 API endpoint；这时数据会进入用户自己部署的 Worker，而不是官方地址。
 - 公开源码不等于公开用户数据；仓库不包含 `.dev.vars`、管理员密钥或 D1 中的数据。
 
-旧的本地 `users.db` 和迁移临时文件已删除；后续用户数据只写入 Cloudflare D1。
+旧的 Go/Docker 入口、本地 `users.db` 和迁移临时文件已从公开部署路径移除；后续用户数据只写入 Cloudflare D1。
 
 ## 本地运行
 
