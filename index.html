@@ -1216,6 +1216,21 @@
             flex: 0 0 17px;
         }
 
+        .top-banner {
+            position: relative;
+        }
+
+        .top-banner .github-link {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .top-banner .github-link:hover {
+            transform: translateY(calc(-50% - 1px));
+        }
+
         .hero {
             width: min(1180px, calc(100% - 40px));
             box-sizing: border-box;
@@ -1476,7 +1491,7 @@
 
         @media (max-width: 768px) {
             .top-banner {
-                padding: 12px 16px;
+                padding: 12px 60px 12px 16px;
                 font-size: 13px;
             }
 
@@ -1679,6 +1694,18 @@
         @media (max-width: 480px) {
             .top-banner {
                 letter-spacing: 0.02em;
+            }
+
+            .top-banner .github-link {
+                right: 14px;
+                width: 32px;
+                padding: 6px;
+                justify-content: center;
+                gap: 0;
+            }
+
+            .top-banner .github-link-label {
+                display: none;
             }
 
             .cta-buttons {
@@ -2231,10 +2258,10 @@
 </head>
 <body>
     <div class="top-banner">
-        <span>抓了么 · 保护您的人身自由</span>
+        <span class="top-banner-label">抓了么 · 保护您的人身自由</span>
         <a class="github-link" href="https://github.com/LimeFinance-org/zhuale.me" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 zhuale.me 开源代码">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.25c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.08 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.76.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/></svg>
-            <span>GitHub 开源代码</span>
+            <span class="github-link-label">GitHub 开源代码</span>
         </a>
     </div>
 
@@ -3008,8 +3035,9 @@ Content-Type: application/json
 
             // 顶部横幅文字切换
             const topBanner = document.querySelector('.top-banner');
+            const topBannerLabel = topBanner.querySelector('.top-banner-label');
             const typeWriterElement = document.getElementById('typewriter-text');
-            const originalBannerText = topBanner.textContent.trim();
+            const originalBannerText = topBannerLabel.textContent.trim();
             const scrolledBannerText = "抓了么  zhuale.me";
 
             const bannerObserverOptions = {
@@ -3022,10 +3050,10 @@ Content-Type: application/json
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) {
                         // 如果看不见了，修改文字
-                        topBanner.textContent = scrolledBannerText;
+                        topBannerLabel.textContent = scrolledBannerText;
                     } else {
                         // 如果看见了，恢复文字
-                        topBanner.textContent = originalBannerText;
+                        topBannerLabel.textContent = originalBannerText;
                     }
                 });
             }, bannerObserverOptions);
