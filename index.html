@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="抓了么：提前登记紧急联系人，万一出事被带走，发起上报后由专业刑事律师联系你的家人。资料浏览器端加密，上报前平台无法读取。">
-    <meta name="theme-color" content="#171613">
+    <meta name="theme-color" content="#0f1724">
     <title>抓了么 · 出事时，有律师替你通知家人</title>
     <link rel="icon" type="image/svg+xml" href="assets/zhuale-mark.svg">
     <link rel="stylesheet" href="tokens.css">
@@ -1151,6 +1151,24 @@ Content-Type: application/json
             });
 
         });
+    </script>
+    <script>
+        // Floating nav: stronger backdrop once scrolled; highlight current section.
+        (function () {
+            const header = document.querySelector('.site-header');
+            const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+            const onScroll = () => {
+                header.classList.toggle('is-scrolled', window.scrollY > 8);
+                let current = null;
+                links.forEach((link) => {
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target && target.getBoundingClientRect().top < 140) current = link;
+                });
+                links.forEach((link) => link.classList.toggle('is-active', link === current));
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
     </script>
     <div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>
     <script>
