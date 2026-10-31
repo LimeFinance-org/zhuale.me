@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="抓了么用浏览器加密预设信息，记录打卡周期和最近打卡时间；上报接口由用户单独调用。">
-    <meta name="theme-color" content="#f6f8fc">
+    <meta name="theme-color" content="#171613">
     <title>抓了么 · 安全打卡</title>
+    <link rel="icon" type="image/svg+xml" href="assets/zhuale-mark.svg">
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="liquid-glass.css">
 </head>
 <body>
     <header class="site-header">
-        <a class="wordmark" href="/" aria-label="抓了么首页">抓了么</a>
+        <a class="wordmark" href="/" aria-label="抓了么首页">
+            <img class="brand-mark" src="assets/zhuale-mark.svg" width="32" height="32" alt="">
+            <span>抓了么</span>
+        </a>
         <nav class="site-nav" aria-label="主导航">
             <a href="#record">账户记录</a>
             <a href="#requests">打卡和上报</a>
@@ -27,55 +32,104 @@
     <main class="page-shell">
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-copy">
-                <h1 id="hero-title">按时打卡。</h1>
-                <p class="lead">浏览器加密预设信息；服务端记录账户、周期和上次打卡时间。</p>
-                <p class="hero-note">错过周期不会自动上报；逾期状态由管理员查询时计算。</p>
+                <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>给自己设个周期</p>
+                <h1 id="hero-title">记得回来，<span>报个平安。</span></h1>
+                <p class="lead">可以直接使用在线平台，也可以把源码部署在自己的环境里。预设资料先在浏览器加密，解密密钥只留在你的设备。</p>
+                <p class="hero-note"><span class="assurance-mark" aria-hidden="true">✓</span>错过周期不会自动上报；需要时，由你单独发起。</p>
                 <div class="hero-actions">
-                    <a href="#" class="btn btn-primary">登录或注册</a>
-                    <a class="text-link" href="#requests">看两种请求</a>
+                    <a href="#" class="btn btn-primary">在线平台使用</a>
+                    <a class="text-link" href="https://github.com/LimeFinance-org/zhuale.me" target="_blank" rel="noopener noreferrer">私有部署</a>
                 </div>
             </div>
 
-            <section class="record-sheet" id="record" aria-labelledby="record-title">
-                <div class="sheet-heading">
-                    <h2 id="record-title">注册后写入 D1</h2>
-                    <span>账户记录</span>
+            <div class="hero-art">
+                <img src="assets/liquid-glass-sphere.png" alt="" width="1536" height="1024" fetchpriority="high">
+                <canvas id="liquid-canvas" class="liquid-canvas" aria-hidden="true"></canvas>
+                <p class="visually-hidden">移动鼠标调整球面光影，按住拖动旋转球体，单击球体产生光波。</p>
+                <section class="record-sheet" id="record" aria-labelledby="record-title">
+                    <div class="sheet-heading">
+                        <div>
+                            <span class="sheet-caption">打卡账户</span>
+                            <h2 id="record-title">只留必要记录</h2>
+                        </div>
+                        <span class="sheet-database">安全记录</span>
+                    </div>
+                    <dl class="account-fields">
+                        <div><dt><code>id</code></dt><dd>账户标识</dd></div>
+                        <div><dt><code>encrypted_data</code></dt><dd>预设信息密文</dd></div>
+                        <div><dt><code>period</code></dt><dd>打卡周期</dd></div>
+                        <div><dt><code>last_checkin</code></dt><dd>最近打卡时间</dd></div>
+                    </dl>
+                    <p class="sheet-note">解密密钥留在你的设备，不会随请求提交。</p>
+                </section>
+            </div>
+        </section>
+
+        <section class="process-section" aria-labelledby="process-title">
+            <div class="process-heading">
+                <div>
+                    <p class="process-eyebrow">第一次使用</p>
+                    <h2 id="process-title">注册后，照着这几步用。</h2>
                 </div>
-                <dl class="account-fields">
-                    <div><dt><code>id</code></dt><dd>账户标识</dd></div>
-                    <div><dt><code>encrypted_data</code></dt><dd>加密后的预设信息</dd></div>
-                    <div><dt><code>period</code></dt><dd>24h / 48h / 72h / 1w</dd></div>
-                    <div><dt><code>last_checkin</code></dt><dd>最近打卡时间</dd></div>
-                </dl>
-                <p class="sheet-note">解密密钥留在你的设备上，不会发送给 Worker。</p>
-            </section>
+                <p>先保存密钥，再选周期。需要上报时，单独提交。</p>
+            </div>
+            <div class="process-diagram" aria-label="抓了么使用流程图">
+                <ol class="process-steps">
+                    <li class="process-step">
+                        <span class="process-number">01</span>
+                        <div><h3>创建账户</h3><p>生成并保存你的专属密钥。</p></div>
+                    </li>
+                    <li class="process-step">
+                        <span class="process-number">02</span>
+                        <div><h3>设置周期与资料</h3><p>选择打卡周期；预设资料先在浏览器加密。</p></div>
+                    </li>
+                    <li class="process-step">
+                        <span class="process-number">03</span>
+                        <div><h3>按时回来打卡</h3><p>点一下只更新最近打卡时间。</p></div>
+                    </li>
+                </ol>
+                <div class="process-question"><span aria-hidden="true">?</span><strong>需要通知联系人吗？</strong></div>
+                <div class="process-outcomes">
+                    <article class="process-outcome process-continue">
+                        <span class="outcome-tag">暂时不需要</span>
+                        <h3>继续按周期打卡</h3>
+                        <p>错过周期不会自动提交资料，也不会自动联系任何人。</p>
+                    </article>
+                    <article class="process-outcome process-report">
+                        <span class="outcome-tag">由你主动选择</span>
+                        <h3>单独发起上报</h3>
+                        <p>只有你提交上报请求时，姓名与联系人信息才会以明文发送并保存。</p>
+                    </article>
+                </div>
+            </div>
+            <p class="process-footnote"><span aria-hidden="true">↳</span>没按时打卡，不会自动发送你的资料。</p>
         </section>
 
         <section class="doc-section route-section" id="requests" aria-labelledby="requests-title">
             <div class="route-heading">
-                <h2 id="requests-title">打卡，不等于上报。</h2>
-                <p>它们是两条分开的请求。</p>
+                <h2 id="requests-title">打卡是日常，上报由你决定。</h2>
+                <p>日常打卡只更新状态；逾期不会替你发送资料。</p>
             </div>
             <div class="route-list">
                 <article class="route route-checkin">
                     <div class="route-title">
-                        <h3>打卡</h3>
+                        <h3><span class="route-index">01</span>日常打卡</h3>
                         <code>POST /api/checkin</code>
                     </div>
-                    <p>更新 <code>last_checkin</code>。这条请求不提交预设信息。</p>
-                    <p class="route-detail">周期由你选择：24h、48h、72h 或 1w。</p>
+                    <p>只更新最近打卡时间，不会提交姓名、联系人或预设信息。</p>
+                    <p class="route-detail">周期由你选择：24 小时、48 小时、72 小时或一周。</p>
                 </article>
                 <article class="route route-sos">
                     <div class="route-title">
-                        <h3>主动上报</h3>
+                        <h3><span class="route-index">02</span>主动上报</h3>
                         <span class="route-paths"><code>GET /api/sos</code><code>POST /api/sos</code></span>
                     </div>
-                    <p>姓名、联系人和联系方式会以明文写入官方 D1。</p>
-                    <p class="route-detail">需要另行调用。当前 Worker 不会自动联系任何人。</p>
+                    <p>姓名、联系人和联系方式会随主动上报请求以明文提交并保存。</p>
+                    <p class="route-detail">需要你另行提交；不会自动联系任何人。</p>
                     <button id="api-open-details" class="text-link" type="button">查看字段和请求示例</button>
                 </article>
             </div>
-            <p class="overdue-note">逾期状态在管理员查询用户列表时按周期计算。Worker 没有定时任务自动调用上报接口。</p>
+            <p class="overdue-note"><span class="overdue-mark" aria-hidden="true"></span>逾期状态只在管理员查询用户列表时按周期计算；当前没有定时任务自动调用上报接口。</p>
         </section>
 
         <details class="legal-note">
@@ -85,8 +139,8 @@
     </main>
 
     <footer class="site-footer">
-        <a class="footer-wordmark" href="/">抓了么</a>
-        <p>Cloudflare Workers 和 D1 / MIT 许可证</p>
+        <a class="footer-wordmark" href="/"><img class="brand-mark" src="assets/zhuale-mark.svg" width="28" height="28" alt=""><span>抓了么</span></a>
+        <p>安心打卡，按时回来。 · MIT 许可证</p>
     </footer>
 
     <!-- Online Use Modal -->
@@ -275,7 +329,7 @@
             <div id="api-panel" class="api-modal-panel" role="tabpanel" data-api-panel="api">
                 <div class="modal-step">
                     <h3>外部上报 API</h3>
-                    <p>支持两种请求方式，无需鉴权。推荐使用结构化请求；触发字段以明文写入官方 D1。</p>
+                    <p>支持两种请求方式，无需鉴权。推荐使用结构化请求；触发字段以明文写入服务端记录。</p>
 
                     <div class="api-section-title">接口地址</div>
                     <div class="api-code-block">https://www.zhuale.me/api/sos</div>
@@ -342,7 +396,7 @@ Content-Type: application/json
 
 成功响应：HTTP 201，JSON 格式，例如 {"status":"success","id":"api_xxx"}。
 缺少必填字段时：HTTP 400；请求方法不支持时：HTTP 405。
-接收归属：当前官方地址由 zhuale.me Worker 接收，触发后的数据会提交到本平台；如果下载源码自行部署，请将 endpoint 改为你的 Worker。
+接收归属：当前官网接收上报请求，触发后的数据会提交到本服务；如果下载源码自行部署，请将 endpoint 改为你的接口地址。
 
 开发要求：
 1. 先校验三个必填字段，再发送请求。
@@ -962,5 +1016,6 @@ Content-Type: application/json
 
         });
     </script>
+    <script type="module" src="liquid-glass.js"></script>
 </body>
 </html>

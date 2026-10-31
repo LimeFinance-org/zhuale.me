@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <defs>
+    <linearGradient id="orbit" x1="6" y1="5" x2="33" y2="34" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9EA"/>
+      <stop offset=".48" stop-color="#E6C98F"/>
+      <stop offset="1" stop-color="#A8793F"/>
+    </linearGradient>
+    <radialGradient id="pearl" cx="0" cy="0" r="1" gradientTransform="matrix(3 -3.7 4.3 3.5 11 11)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF7"/>
+      <stop offset=".45" stop-color="#EAD19E"/>
+      <stop offset="1" stop-color="#A97C43"/>
+    </radialGradient>
+  </defs>
+  <circle cx="20" cy="20" r="17" fill="#24221E" fill-opacity=".8" stroke="#FFF9EC" stroke-opacity=".34"/>
+  <path d="M26.2 10.1A12.1 12.1 0 1 0 31.9 19" stroke="url(#orbit)" stroke-linecap="round" stroke-width="2.35"/>
+  <path d="m28.6 16.2 3.5 3.1-4.6 1.6" stroke="url(#orbit)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/>
+  <path d="m12.7 20.5 4.7 4.6 9.5-10.5" stroke="#F8EFDD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25"/>
+  <circle cx="10.5" cy="11.8" r="2.1" fill="url(#pearl)" stroke="#FFF9EC" stroke-opacity=".8" stroke-width=".7"/>
+</svg>

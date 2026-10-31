@@ -2,7 +2,9 @@
   "name": "zhuale.me",
   "private": true,
   "scripts": {
+    "predev": "npm run build",
     "dev": "wrangler dev",
+    "build": "node scripts/build-site.mjs",
     "check": "wrangler check",
     "types": "wrangler types",
     "deploy": "wrangler deploy",
@@ -11,7 +13,11 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.1",
+    "esbuild": "^0.28.2",
     "typescript": "latest",
     "wrangler": "latest"
+  },
+  "dependencies": {
+    "three": "^0.187.0"
   }
 }
