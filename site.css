@@ -835,3 +835,39 @@ body { background: radial-gradient(ellipse 60rem 40rem at 85% -10%, rgba(95, 212
 .z-status-card { position: relative; right: auto; bottom: auto; width: min(340px, 100%); margin-top: -28px; z-index: 1; }
 .z-emblem { width: 280px; height: 280px; }
 @media (max-width: 720px) { .z-emblem { width: 220px; height: 220px; } .z-status-card { margin-top: -12px; } }
+
+/* Hero rotating headline */
+.z-rotator { position: relative; }
+.z-rotator .z-l1, .z-rotator .z-l2 { white-space: nowrap; transition: opacity 300ms ease; }
+.z-rotator .z-l2 { color: var(--z-accent); }
+.z-rotator.is-morphing .z-l1, .z-rotator.is-morphing .z-l2, .z-rotator.is-fading .z-l1, .z-rotator.is-fading .z-l2 { opacity: 0; transition: none; }
+.z-rotator.is-fading .z-l1, .z-rotator.is-fading .z-l2 { transition: opacity 300ms ease; }
+.z-particles { position: absolute; left: -80px; top: -80px; pointer-events: none; }
+@media (max-width: 420px) { .z-hero h1 { font-size: clamp(2.2rem, 11vw, 2.8rem); } }
+
+/* Manifesto carousel */
+.z-manifesto h2 { text-align: center; margin-inline: auto !important; max-width: none !important; }
+.z-slides { display: grid; }
+.z-slide { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px); filter: blur(6px); transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease, visibility 0s 600ms; }
+.z-slide.is-active { opacity: 1; visibility: visible; transform: none; filter: none; transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease; }
+.z-slide-ctrl { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 24px; margin-top: 26px; }
+.z-dots { display: flex; gap: 8px; }
+.z-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: rgba(148, 178, 214, 0.3); cursor: pointer; transition: width 300ms ease, background 300ms ease; }
+.z-dots button[aria-selected="true"] { width: 26px; background: var(--z-candle); }
+.z-countdown { display: inline-flex; align-items: center; gap: 8px; color: var(--z-muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.z-count-bar { position: relative; width: 64px; height: 3px; overflow: hidden; border-radius: 3px; background: rgba(148, 178, 214, 0.18); }
+.z-count-bar i { position: absolute; inset: 0; background: var(--z-candle); transform-origin: left; }
+.z-count-num { min-width: 1ch; color: var(--z-candle); font-weight: 700; }
+.z-manifesto.is-paused .z-countdown::after { content: "· 已暂停"; }
+@media (prefers-reduced-motion: reduce) { .z-slide, .z-slide.is-active { transition: none; filter: none; transform: none; } }
+
+/* FAQ: all expanded, one row, swipe on small screens */
+.z-faq { display: grid !important; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 16px !important; max-width: none !important; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: thin; }
+.z-faq article { scroll-snap-align: start; padding: 24px; border: 1px solid var(--z-line); border-radius: var(--z-radius); background: var(--z-surface); }
+.z-faq h3 { margin: 0 0 12px; font-size: 1.0625rem; color: var(--z-text); }
+.z-faq p { margin: 0; color: #c3d0df; font-size: 0.9375rem; line-height: 1.8; }
+@media (max-width: 1024px) {
+  .z-faq { grid-auto-columns: 78%; margin-inline: -16px; padding-inline: 16px; scroll-padding-inline: 16px; }
+}
+.z-hero h1.z-rotator .z-l1 { color: var(--z-text); }
+.z-manifesto .z-slide h2 { font-weight: 700; }
