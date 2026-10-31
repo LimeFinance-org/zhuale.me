@@ -1587,20 +1587,34 @@ body {
 }
 
 /* ===== Hero with A4 movement illustration ===== */
-.z-hero-art { position: relative; isolation: isolate; overflow: hidden; margin-top: 8px; padding: 72px 56px 64px !important; border: 1px solid var(--z-line); border-radius: 28px; }
-.z-hero-art::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("assets/a4-movement.webp") 70% 30% / cover no-repeat; opacity: 0.6; filter: saturate(0.85); }
-.z-hero-art::after { content: ""; position: absolute; inset: 0; z-index: -1; background:
-  linear-gradient(90deg, rgba(10, 18, 30, 0.97) 0%, rgba(10, 18, 30, 0.9) 42%, rgba(10, 18, 30, 0.55) 72%, rgba(10, 18, 30, 0.4) 100%),
-  linear-gradient(180deg, rgba(10, 18, 30, 0.2), rgba(10, 18, 30, 0.6)); }
-.z-hero-art .z-memorial { display: inline-flex; margin-top: 26px; background: rgba(10, 18, 30, 0.5); }
-.z-hero-art .z-art-credit { position: absolute; right: 18px; bottom: 12px; margin: 0; color: rgba(233, 239, 247, 0.5); font-size: 0.75rem; }
-.z-hero-art .z-demo { backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(20, 33, 52, 0.82), rgba(12, 21, 34, 0.86)); }
-.z-hero-art + .z-trust { margin-top: 24px; }
-@media (max-width: 1024px) {
-  .z-hero-art::after { background: linear-gradient(180deg, rgba(10, 18, 30, 0.93) 0%, rgba(10, 18, 30, 0.85) 55%, rgba(10, 18, 30, 0.6) 100%); }
-}
+
+/* ===== Top cinematic banner ===== */
+.z-banner { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 340px; margin-top: 8px; padding: 44px 24px 40px; border: 1px solid var(--z-line); border-radius: 28px; text-align: center; background: #0c1522; }
+.z-banner::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("assets/a4-movement.webp") center 35% / cover no-repeat; opacity: 0.6; filter: saturate(0.9); }
+.z-banner::after { content: ""; position: absolute; inset: 0; z-index: -1; background:
+  radial-gradient(ellipse 50% 75% at 50% 50%, rgba(10, 18, 30, 0.9), rgba(10, 18, 30, 0.5) 70%, rgba(10, 18, 30, 0.3)),
+  linear-gradient(180deg, rgba(10, 18, 30, 0.35), rgba(10, 18, 30, 0.15) 40%, rgba(10, 18, 30, 0.8)); }
+.z-banner-icons { display: flex; gap: 16px; margin-bottom: 14px; }
+.z-banner-icons .z-ic-xl { width: 34px; height: 34px; }
+.z-candle { color: var(--z-candle) !important; filter: drop-shadow(0 0 14px rgba(242, 180, 92, 0.55)); }
+.z-slides { display: grid; width: 100%; }
+.z-slide { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px); filter: blur(6px); transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease, visibility 0s 600ms; }
+.z-slide.is-active { opacity: 1; visibility: visible; transform: none; filter: none; transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease; }
+.z-slide h2 { margin: 0; font-family: var(--font-body); font-size: clamp(2.2rem, 4vw + 1rem, 3.6rem); font-weight: 800; line-height: 1.15; color: #f3f6fb; text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
+.z-slide p { margin: 14px auto 0; max-width: 32em; color: #d3dce8; font-size: clamp(1rem, 0.4vw + 0.95rem, 1.15rem); line-height: 1.7; }
+.z-banner .z-dots { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.z-dots button { position: relative; overflow: hidden; width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: rgba(233, 239, 247, 0.3); cursor: pointer; transition: width 300ms ease; }
+.z-dots button[aria-selected="true"] { width: 40px; background: rgba(242, 180, 92, 0.25); }
+.z-dots button[aria-selected="true"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--z-candle); transform-origin: left; animation: z-fill var(--z-slide-dur, 7s) linear forwards; }
+.z-banner.is-paused .z-dots button::after { animation-play-state: paused; }
+@keyframes z-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.z-banner .z-memorial { margin-top: 20px; background: rgba(10, 18, 30, 0.55); }
+.z-banner .z-art-credit { position: absolute; right: 18px; bottom: 12px; margin: 0; color: rgba(233, 239, 247, 0.5); font-size: 0.75rem; }
+.z-banner + .z-hero { padding-top: 56px; }
 @media (max-width: 720px) {
-  .z-hero-art { padding: 36px 20px 48px !important; border-radius: 22px; }
-  .z-hero-art::before { background-position: 65% center; opacity: 0.5; }
-  .z-hero-art .z-memorial { font-size: 0.8125rem; }
+  .z-banner { min-height: 300px; padding: 36px 18px 44px; border-radius: 22px; }
+  .z-banner::before { background-position: 62% center; opacity: 0.5; }
+  .z-banner .z-memorial { font-size: 0.8125rem; }
+  .z-banner .z-art-credit { left: 0; right: 0; text-align: center; }
 }
+@media (prefers-reduced-motion: reduce) { .z-slide, .z-slide.is-active { transition: none; filter: none; transform: none; } .z-dots button[aria-selected="true"]::after { animation: none; transform: none; } }
