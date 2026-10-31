@@ -1896,10 +1896,7 @@ body {
 }
 
 .scenario-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  align-items: end;
-  gap: clamp(24px, 5vw, 64px);
+  display: block;
   margin-bottom: 25px;
 }
 
@@ -1917,23 +1914,6 @@ body {
   font-size: clamp(1.8rem, 3.1vw, 2.55rem);
   letter-spacing: -0.055em;
   line-height: 1.2;
-}
-
-.scenario-lead {
-  margin-top: 16px;
-  color: #c4bcae;
-  font-size: 0.96rem;
-  line-height: 1.75;
-}
-
-.scenario-boundary {
-  margin: 0;
-  padding: 14px 0 0 15px;
-  border-top: 1px solid rgba(230, 202, 155, 0.2);
-  border-left: 2px solid rgba(216, 178, 111, 0.52);
-  color: #a9a194;
-  font-size: 0.82rem;
-  line-height: 1.7;
 }
 
 .scenario-list {
@@ -2006,6 +1986,200 @@ body {
   font-size: 0.8rem;
 }
 
+.legacy-privacy-section,
+.legacy-feature-section,
+.legacy-stats-section,
+.legacy-faq-section {
+  margin-top: clamp(48px, 7vw, 88px);
+}
+
+.legacy-privacy-panel {
+  padding: clamp(23px, 4.2vw, 42px);
+  border: 1px solid rgba(255, 246, 226, 0.17);
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse 32rem 18rem at 90% 4%, rgba(180, 133, 59, 0.13), transparent 72%),
+    linear-gradient(142deg, rgba(48, 45, 39, 0.78), rgba(31, 30, 27, 0.83));
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.legacy-privacy-copy h2,
+.legacy-stats-heading h2,
+.legacy-faq-section > h2 {
+  color: #f6f0e5;
+  font-size: clamp(1.65rem, 3.1vw, 2.35rem);
+  letter-spacing: -0.05em;
+}
+
+.legacy-privacy-copy > p:last-child {
+  max-width: 82ch;
+  margin-top: 15px;
+  color: #c4bcae;
+  font-size: 0.96rem;
+  line-height: 1.8;
+}
+
+.legacy-privacy-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 25px;
+}
+
+.legacy-privacy-fact {
+  min-width: 0;
+  padding: 16px 17px;
+  border: 1px solid rgba(255, 246, 226, 0.12);
+  border-radius: 17px;
+  background: rgba(255, 249, 236, 0.045);
+}
+
+.legacy-privacy-fact > span {
+  color: #d2b77f;
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.legacy-privacy-fact p {
+  margin-top: 8px;
+  color: #ded6c8;
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.legacy-feature-section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.legacy-feature {
+  min-height: 172px;
+  padding: 22px 23px;
+  border: 1px solid rgba(255, 246, 226, 0.13);
+  border-radius: 21px;
+  background: linear-gradient(145deg, rgba(255, 249, 236, 0.065), rgba(255, 249, 236, 0.025));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+.legacy-feature-index {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #d0ad6b;
+  font-family: var(--font-outlier);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.legacy-feature h2 {
+  color: #f1e9dc;
+  font-size: 1.04rem;
+  letter-spacing: -0.02em;
+}
+
+.legacy-feature p {
+  max-width: 65ch;
+  margin-top: 9px;
+  color: #bcb3a4;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.legacy-stats-section {
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid rgba(255, 246, 226, 0.14);
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse 36rem 16rem at 50% 0%, rgba(180, 133, 59, 0.11), transparent 72%),
+    rgba(255, 249, 236, 0.035);
+}
+
+.legacy-stats-heading {
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+.legacy-stats-overline {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #d2b77f;
+  font-family: var(--font-outlier);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+}
+
+.legacy-stats-heading p {
+  margin-top: 9px;
+  color: #bcb3a4;
+  font-size: 0.9rem;
+}
+
+.legacy-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.legacy-stat {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 17px 10px;
+  border: 1px solid rgba(255, 246, 226, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 249, 236, 0.035);
+  text-align: center;
+}
+
+.legacy-stat strong {
+  color: #ebce91;
+  font-family: var(--font-outlier);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.045em;
+}
+
+.legacy-stat span {
+  color: #bdb5a7;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.legacy-faq-section > h2 {
+  margin-bottom: 21px;
+}
+
+.legacy-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.legacy-faq {
+  min-height: 160px;
+  padding: 21px 22px;
+  border: 1px solid rgba(255, 246, 226, 0.13);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 249, 236, 0.06), rgba(255, 249, 236, 0.025));
+}
+
+.legacy-faq h3 {
+  color: #f1e9dc;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.legacy-faq p {
+  margin-top: 10px;
+  color: #bcb3a4;
+  font-size: 0.84rem;
+  line-height: 1.72;
+}
+
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header,
   .hero-kicker,
@@ -2054,8 +2228,6 @@ body {
   }
 
   .scenario-intro {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 15px;
     margin-bottom: 21px;
   }
 
@@ -2066,6 +2238,10 @@ body {
   .scenario-item:nth-child(4),
   .scenario-item:nth-child(5) {
     grid-column: auto;
+  }
+
+  .legacy-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2163,16 +2339,6 @@ body {
     font-size: 1.8rem;
   }
 
-  .scenario-lead {
-    margin-top: 11px;
-    font-size: 0.9rem;
-  }
-
-  .scenario-boundary {
-    max-width: 62ch;
-    font-size: 0.78rem;
-  }
-
   .scenario-item {
     min-height: 0;
     gap: 14px;
@@ -2182,6 +2348,46 @@ body {
 
   .scenario-list {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .legacy-privacy-panel {
+    padding: 23px 17px;
+    border-radius: 26px;
+  }
+
+  .legacy-privacy-facts,
+  .legacy-feature-section,
+  .legacy-faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .legacy-privacy-facts {
+    gap: 9px;
+    margin-top: 19px;
+  }
+
+  .legacy-feature {
+    min-height: 0;
+    padding: 19px 18px;
+  }
+
+  .legacy-stats-section {
+    padding: 23px 16px;
+    border-radius: 25px;
+  }
+
+  .legacy-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .legacy-stat {
+    padding: 15px 8px;
+  }
+
+  .legacy-faq {
+    min-height: 0;
+    padding: 18px;
   }
 
 }
