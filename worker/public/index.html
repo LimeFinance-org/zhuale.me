@@ -55,19 +55,9 @@
             <a href="#privacy">隐私边界</a>
             <a href="#faq">常见问题</a>
             <button id="api-btn" class="nav-action" type="button">API</button>
-            <button class="z-menu-btn" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="z-mobile-menu"><span></span><span></span></button>
-            <a class="z-nav-cta" href="#process" data-open-online>注册使用</a>
         </nav>
+        <a class="z-nav-cta" href="#process" data-open-online>注册使用</a>
     </header>
-
-    <nav id="z-mobile-menu" class="z-mobile-menu" aria-label="移动端导航" hidden>
-        <a href="#process">使用流程</a>
-        <a href="#trigger">触发方式</a>
-        <a href="#scenarios">适用人群</a>
-        <a href="#privacy">隐私边界</a>
-        <a href="#requests">API 接入</a>
-        <a href="#faq">常见问题</a>
-    </nav>
 
     <main class="page-shell z-main">
         <!-- Banner -->
@@ -1228,15 +1218,6 @@ Content-Type: application/json
 
     </script>
     <script>
-        // Mobile menu toggle.
-        (function () {
-            const btn = document.querySelector('.z-menu-btn'), menu = document.getElementById('z-mobile-menu');
-            if (!btn || !menu) return;
-            const set = (open) => { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单'); };
-            btn.addEventListener('click', () => set(menu.hidden));
-            menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
-        })();
         // Hero demo: reveal timeline steps one by one, then loop.
         (function () {
             const items = [...document.querySelectorAll('.z-demo-list li')];
