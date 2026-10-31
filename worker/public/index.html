@@ -71,7 +71,7 @@
 
     <main class="page-shell z-main">
         <!-- Hero -->
-        <section class="z-hero" aria-labelledby="hero-title">
+        <section class="z-hero z-hero-art" aria-labelledby="hero-title">
             <div class="z-hero-copy">
                 <p class="z-badge"><svg class="z-ic"><use href="#i-chain"/></svg>反对任意拘押 · 紧急律师协助</p>
                 <h1 id="hero-title">出事了，<br><span>有人替你报信。</span></h1>
@@ -81,8 +81,10 @@
                     <a href="#process" class="btn btn-primary z-btn-primary">注册使用</a>
                     <a class="z-btn-ghost" href="#process">看看怎么用</a>
                 </div>
+                <p class="z-memorial"><svg class="z-ic"><use href="#i-candle"/></svg>铭记 1989 · 6 · 4，铭记每一位因言获罪的人。</p>
             </div>
 
+            <p class="z-art-credit">背景：乌鲁木齐中路 · 白纸运动，2022</p>
             <div class="z-hero-visual">
                 <div class="z-demo" role="img" aria-label="示意：每天打卡报平安；超时未打卡时系统自动上报，律师收到后联系你的家人。">
                     <div class="z-demo-head"><span class="z-dot"></span><strong>如果出事，会发生什么</strong><span class="z-demo-tag">示意</span></div>
@@ -132,26 +134,6 @@
                 <article><svg class="z-ic-lg"><use href="#i-users"/></svg><h3>信任的人代为上报</h3><p>家人或朋友发现你失联，可以代你提交上报，不必等到周期结束。</p></article>
                 <article><svg class="z-ic-lg"><use href="#i-send"/></svg><h3>快捷指令 / 自动化</h3><p>通过 API 接入手机快捷指令或自动化工具，紧急时一键触发。</p></article>
             </div>
-        </section>
-
-        <!-- Manifesto -->
-        <section class="z-manifesto" aria-labelledby="manifesto-title" role="region" aria-description="背景插画：乌鲁木齐中路，举着白纸的人们与蓝色花朵">
-            <div class="z-manifesto-icons" aria-hidden="true">
-                <svg class="z-ic-xl z-candle"><use href="#i-candle"/></svg>
-                <svg class="z-ic-xl"><use href="#i-chain"/></svg>
-            </div>
-            <div class="z-slides" aria-roledescription="轮播" aria-live="polite">
-                <div class="z-slide"><h2 id="manifesto-title">自由不是恩赐。</h2><p class="z-manifesto-copy">被带走的那一刻，你不该孤立无援，你的家人也不该一无所知。</p></div>
-                <div class="z-slide" hidden><h2>言论不是罪。</h2><p class="z-manifesto-copy">说出真相的人，不该因此消失。</p></div>
-                <div class="z-slide" hidden><h2>沉默不是安全。</h2><p class="z-manifesto-copy">提前做好准备，是对自己负责，也是对家人负责。</p></div>
-                <div class="z-slide" hidden><h2>家人有权知道。</h2><p class="z-manifesto-copy">被带走的人身在何处，不该成为秘密。</p></div>
-                <div class="z-slide" hidden><h2>律师不是奢侈品。</h2><p class="z-manifesto-copy">每一个被羁押的人，都应当得到法律帮助。</p></div>
-            </div>
-            <div class="z-slide-ctrl">
-                <div class="z-dots" role="tablist" aria-label="切换标语"><button type="button" role="tab" aria-label="第 1 条" aria-selected="true"></button><button type="button" role="tab" aria-label="第 2 条"></button><button type="button" role="tab" aria-label="第 3 条"></button><button type="button" role="tab" aria-label="第 4 条"></button><button type="button" role="tab" aria-label="第 5 条"></button></div>
-            </div>
-            <p class="z-memorial"><svg class="z-ic"><use href="#i-candle"/></svg>铭记 1989 · 6 · 4，铭记每一位因言获罪的人。</p>
-            <p class="z-art-credit">背景：乌鲁木齐中路 · 白纸运动，2022</p>
         </section>
 
         <!-- Scenarios -->
@@ -1153,10 +1135,10 @@ Content-Type: application/json
             const l1 = h1.querySelector('.z-l1'), l2 = h1.querySelector('.z-l2'), cv = h1.querySelector('.z-particles');
             const phrases = [
                 ['被带走时，', '你不是一个人。'],
-                ['失联之前，', '先把退路留好。'],
-                ['沉默之时，', '有人替你发声。'],
-                ['你的家人，', '不会一无所知。'],
-                ['言论不是罪，', '求助是权利。'],
+                ['自由不是恩赐，', '言论不是罪。'],
+                ['律师不是奢侈品，', '人人应得法律帮助。'],
+                ['沉默不是安全，', '提前准备才是。'],
+                ['家人有权知道，', '你身在何处。'],
             ];
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const ctx = cv.getContext('2d');
@@ -1238,32 +1220,6 @@ Content-Type: application/json
             setInterval(next, 6000);
         })();
 
-        // Manifesto carousel with countdown.
-        (function () {
-            const root = document.querySelector('.z-manifesto');
-            if (!root) return;
-            const slides = [...root.querySelectorAll('.z-slide')], dots = [...root.querySelectorAll('.z-dots button')];
-            const SECONDS = 8;
-            let idx = 0, left = SECONDS, paused = false;
-            root.style.setProperty('--z-slide-dur', SECONDS + 's');
-            slides.forEach((s, i) => { s.hidden = false; s.classList.toggle('is-active', i === 0); if (i) s.setAttribute('aria-hidden', 'true'); });
-            const show = (i) => {
-                idx = (i + slides.length) % slides.length;
-                slides.forEach((s, j) => { s.classList.toggle('is-active', j === idx); s.toggleAttribute('aria-hidden', j !== idx); });
-                dots.forEach((d, j) => { d.setAttribute('aria-selected', 'false'); });
-                void root.offsetWidth; // restart the fill animation
-                dots[idx].setAttribute('aria-selected', 'true');
-                left = SECONDS;
-            };
-            dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
-            root.addEventListener('mouseenter', () => { paused = true; root.classList.add('is-paused'); });
-            root.addEventListener('mouseleave', () => { paused = false; root.classList.remove('is-paused'); });
-            setInterval(() => {
-                if (paused || document.hidden) return;
-                left -= 1;
-                if (left <= 0) show(idx + 1);
-            }, 1000);
-        })();
     </script>
     <script>
         // Mobile menu toggle.
@@ -1290,7 +1246,7 @@ Content-Type: application/json
         // Subtle reveal on scroll.
         (function () {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-            const els = document.querySelectorAll('.z-trust, .z-head, .z-timeline > li, .z-manifesto, .z-grid-5 > li, .z-triggers > article, .z-flow > li, .z-api > article, .z-stats, .z-faq > article, .z-cta');
+            const els = document.querySelectorAll('.z-trust, .z-head, .z-timeline > li, .z-grid-5 > li, .z-triggers > article, .z-flow > li, .z-api > article, .z-stats, .z-faq > article, .z-cta');
             const io = new IntersectionObserver((entries) => entries.forEach((e) => {
                 if (e.isIntersecting) { const t = e.target; t.classList.add('is-in'); io.unobserve(t); setTimeout(() => { t.style.transitionDelay = ''; }, 900); }
             }), { rootMargin: '0px 0px -8% 0px' });
