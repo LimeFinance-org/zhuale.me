@@ -845,3 +845,83 @@ button:active,
 .copy-btn:active {
   transform: translateY(1px);
 }
+
+/* ===== Clarity pass: consistent section rhythm & legibility ===== */
+html { scroll-behavior: smooth; }
+section[id], #faq { scroll-margin-top: 96px; }
+
+.section-eyebrow,
+.process-eyebrow,
+.scenario-eyebrow,
+.legacy-stats-overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: var(--text-sm) !important;
+  font-weight: 600;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+  color: #d9b56f !important;
+}
+.section-eyebrow::before,
+.process-eyebrow::before,
+.scenario-eyebrow::before,
+.legacy-stats-overline::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.section-eyebrow-standalone {
+  display: flex;
+  margin: 96px 0 -24px;
+}
+
+/* Unified heading sizes so hierarchy reads at a glance */
+#process-title, #scenarios-title, #privacy-title,
+#requests-title, #legacy-stats-title, #legacy-faq-title {
+  font-size: clamp(1.875rem, 2vw + 1rem, 2.75rem) !important;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.legacy-stats-heading { text-align: left !important; align-items: flex-start !important; }
+
+/* Body copy: larger & higher contrast */
+.process-step p, .process-outcome p, .scenario-copy p,
+.legacy-privacy-copy > p, .legacy-privacy-fact, .legacy-feature p,
+.route p, .route-heading p, .legacy-faq p, .legacy-stat span, .sheet-note {
+  font-size: 0.9375rem !important;
+  line-height: 1.7 !important;
+  color: rgba(245, 236, 220, 0.78) !important;
+}
+.process-step strong, .process-step h3, .scenario-copy h3,
+.legacy-feature h2, .legacy-faq h3 {
+  font-size: 1.125rem !important;
+  color: #fbf4e6 !important;
+}
+
+/* Audience: one even row instead of a ragged 3+2 grid */
+@media (min-width: 1024px) {
+  .scenario-list { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+  .scenario-list > * { grid-column: auto !important; }
+}
+
+/* Stats: bigger numbers, quieter labels */
+.legacy-stat strong { font-size: clamp(2rem, 2.5vw + 1rem, 2.75rem) !important; color: #e4c27c !important; }
+
+/* Hover feedback on cards */
+.process-step, .scenario-item, .legacy-feature, .legacy-faq, .route, .legacy-stat {
+  transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+}
+@media (hover: hover) {
+  .process-step:hover, .scenario-item:hover, .legacy-feature:hover, .legacy-faq:hover, .legacy-stat:hover {
+    transform: translateY(-2px);
+    border-color: rgba(217, 181, 111, 0.45) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .process-step, .scenario-item, .legacy-feature, .legacy-faq, .route, .legacy-stat { transition: none; }
+}
