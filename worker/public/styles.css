@@ -1627,3 +1627,25 @@ html, body { overflow-x: clip; }
 /* FAQ: swipe without visible scrollbars */
 .z-faq { overflow-y: hidden !important; scrollbar-width: none !important; -ms-overflow-style: none; overscroll-behavior-x: contain; }
 .z-faq::-webkit-scrollbar { display: none; }
+
+/* Banner extends behind the floating nav */
+.z-banner { margin-top: -116px; padding-top: 156px; min-height: 500px; border-top: 0; }
+@media (max-width: 720px) { .z-banner { margin-top: -110px; padding-top: 140px; min-height: 440px; } }
+.z-slide h2, .z-slide p { text-align: center; margin-inline: auto !important; max-width: none !important; }
+.z-slide p { max-width: 32em !important; }
+
+/* Nav: light glass over the banner, solid once scrolled */
+.site-header.z-header { transition: background 250ms ease, border-color 250ms ease, box-shadow 250ms ease; }
+.site-header.z-header:not(.is-scrolled) {
+  background: rgba(10, 18, 30, 0.38) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+.site-header.z-header:not(.is-scrolled) .z-nav > a:not(.z-nav-cta),
+.site-header.z-header:not(.is-scrolled) .z-nav .nav-action { color: rgba(240, 245, 251, 0.88) !important; }
+.site-header.z-header:not(.is-scrolled) .wordmark { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5); }
+/* Fast 1s slogan rotation */
+.z-banner .z-slide { transition: opacity 250ms ease, transform 250ms ease, filter 250ms ease, visibility 0s 250ms; }
+.z-banner .z-slide.is-active { transition: opacity 250ms ease, transform 250ms ease, filter 250ms ease; }

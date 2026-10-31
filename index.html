@@ -1254,7 +1254,7 @@ Content-Type: application/json
             const root = document.querySelector('.z-banner');
             if (!root) return;
             const slides = [...root.querySelectorAll('.z-slide')], dots = [...root.querySelectorAll('.z-dots button')];
-            const SECONDS = 7;
+            const SECONDS = 1;
             let idx = 0, left = SECONDS;
             root.style.setProperty('--z-slide-dur', SECONDS + 's');
             const show = (i) => {
