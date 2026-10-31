@@ -141,7 +141,6 @@
             </div>
             <div class="z-slide-ctrl">
                 <div class="z-dots" role="tablist" aria-label="切换标语"><button type="button" role="tab" aria-label="第 1 条" aria-selected="true"></button><button type="button" role="tab" aria-label="第 2 条"></button><button type="button" role="tab" aria-label="第 3 条"></button><button type="button" role="tab" aria-label="第 4 条"></button><button type="button" role="tab" aria-label="第 5 条"></button></div>
-                <span class="z-countdown" aria-hidden="true"><span class="z-count-bar"><i></i></span></span>
             </div>
             <p class="z-memorial"><svg class="z-ic"><use href="#i-candle"/></svg>铭记 1989 · 6 · 4，铭记每一位因言获罪的人。</p>
             <p class="z-art-credit">背景：乌鲁木齐中路 · 白纸运动，2022</p>
@@ -1235,21 +1234,17 @@ Content-Type: application/json
             const root = document.querySelector('.z-manifesto');
             if (!root) return;
             const slides = [...root.querySelectorAll('.z-slide')], dots = [...root.querySelectorAll('.z-dots button')];
-            const num = root.querySelector('.z-count-num'), bar = root.querySelector('.z-count-bar i');
             const SECONDS = 8;
             let idx = 0, left = SECONDS, paused = false;
+            root.style.setProperty('--z-slide-dur', SECONDS + 's');
             slides.forEach((s, i) => { s.hidden = false; s.classList.toggle('is-active', i === 0); if (i) s.setAttribute('aria-hidden', 'true'); });
             const show = (i) => {
                 idx = (i + slides.length) % slides.length;
                 slides.forEach((s, j) => { s.classList.toggle('is-active', j === idx); s.toggleAttribute('aria-hidden', j !== idx); });
-                dots.forEach((d, j) => d.setAttribute('aria-selected', j === idx ? 'true' : 'false'));
-                left = SECONDS; tick(true);
-            };
-            const tick = (reset) => {
-                if (num) num.textContent = left;
-                bar.style.transition = 'none';
-                bar.style.transform = `scaleX(${left / SECONDS})`;
-                if (!reset || true) { void bar.offsetWidth; bar.style.transition = paused ? 'none' : 'transform 1s linear'; bar.style.transform = `scaleX(${Math.max(0, left - 1) / SECONDS})`; }
+                dots.forEach((d, j) => { d.setAttribute('aria-selected', 'false'); });
+                void root.offsetWidth; // restart the fill animation
+                dots[idx].setAttribute('aria-selected', 'true');
+                left = SECONDS;
             };
             dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
             root.addEventListener('mouseenter', () => { paused = true; root.classList.add('is-paused'); });
@@ -1257,9 +1252,8 @@ Content-Type: application/json
             setInterval(() => {
                 if (paused || document.hidden) return;
                 left -= 1;
-                if (left <= 0) show(idx + 1); else tick();
+                if (left <= 0) show(idx + 1);
             }, 1000);
-            tick(true);
         })();
     </script>
     <div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>

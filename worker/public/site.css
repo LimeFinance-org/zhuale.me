@@ -882,3 +882,11 @@ body { background: radial-gradient(ellipse 60rem 40rem at 85% -10%, rgba(95, 212
 @media (max-width: 720px) { .z-manifesto::before { background-position: 62% center; opacity: 0.45; } }
 .z-manifesto .z-memorial { align-self: center; }
 .z-count-bar { width: 80px; }
+/* Active dot doubles as countdown */
+.z-dots { align-items: center; }
+.z-dots button { position: relative; overflow: hidden; }
+.z-dots button[aria-selected="true"] { width: 40px; background: rgba(242, 180, 92, 0.25); }
+.z-dots button[aria-selected="true"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--z-candle); transform-origin: left; animation: z-fill var(--z-slide-dur, 8s) linear forwards; }
+.z-manifesto.is-paused .z-dots button::after { animation-play-state: paused; }
+@keyframes z-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .z-dots button[aria-selected="true"]::after { animation: none; } }
