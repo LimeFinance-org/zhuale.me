@@ -925,3 +925,21 @@ section[id], #faq { scroll-margin-top: 96px; }
   html { scroll-behavior: auto; }
   .process-step, .scenario-item, .legacy-feature, .legacy-faq, .route, .legacy-stat { transition: none; }
 }
+
+.form-group > .form-label { display: block; margin-bottom: var(--space-xs); font-size: var(--text-sm); color: #f2eadb; }
+.modal-close:focus-visible, .icon-btn:focus-visible { outline: 2px solid #d9b56f; outline-offset: 2px; }
+
+/* Toasts (replace blocking alert dialogs) */
+.toast-region {
+  position: fixed; z-index: var(--z-toast); left: 50%; bottom: 24px; transform: translateX(-50%);
+  display: grid; gap: 8px; width: min(420px, calc(100% - 32px)); pointer-events: none;
+}
+.toast {
+  padding: 12px 16px; border-radius: 12px; font-size: 0.9375rem; line-height: 1.5;
+  color: #fbf4e6; background: rgba(38, 34, 27, 0.96); border: 1px solid rgba(217, 181, 111, 0.45);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  opacity: 0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;
+}
+.toast.toast-error { border-color: rgba(226, 112, 96, 0.7); }
+.toast.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }

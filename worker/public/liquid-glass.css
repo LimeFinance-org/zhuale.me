@@ -303,7 +303,8 @@ body {
   touch-action: pan-y;
 }
 
-.hero-art > img {
+.hero-art > img,
+.hero-art > picture > img {
   position: absolute;
   z-index: 0;
   inset: 0;

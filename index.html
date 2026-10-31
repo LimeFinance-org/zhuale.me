@@ -45,7 +45,7 @@
             </div>
 
             <div class="hero-art">
-                <img src="assets/liquid-glass-sphere.png" alt="" width="1536" height="1024" fetchpriority="high">
+                <picture><source srcset="assets/liquid-glass-sphere.webp" type="image/webp"><img src="assets/liquid-glass-sphere.png" alt="" width="1536" height="1024" fetchpriority="high"></picture>
                 <canvas id="liquid-canvas" class="liquid-canvas" aria-hidden="true"></canvas>
                 <p class="visually-hidden">移动鼠标调整球面光影，按住拖动旋转球体，单击球体产生光波。</p>
                 <section class="record-sheet" id="record" aria-labelledby="record-title">
@@ -205,8 +205,8 @@
             </article>
             <article class="legacy-feature">
                 <span class="legacy-feature-index">04</span>
-                <h2>支持 API 接入</h2>
-                <p>提供标准 API 接口，支持 GET/POST 请求。当前官方地址由 zhuale.me 维护，触发请求会发送到本平台；源码公开后也可以下载并按自己的运行环境部署。</p>
+                <h2>自选打卡周期</h2>
+                <p>24 小时、48 小时、72 小时或一周，按自己的节奏打卡；没按时打卡也不会自动发送你的资料。</p>
             </article>
         </section>
 
@@ -284,7 +284,7 @@
     <!-- Online Use Modal -->
     <div id="online-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="登录或创建账户" style="display: none;">
         <div class="modal-content">
-            <button class="modal-close">&times;</button>
+            <button class="modal-close" type="button" aria-label="关闭">&times;</button>
             
             <!-- Auth Tabs -->
             <div id="auth-tabs" class="auth-tabs">
@@ -300,15 +300,15 @@
                     <p>请输入您的专属密钥与验证码</p>
                     
                     <div class="form-group">
-                        <label>专属密钥</label>
+                        <label for="login-key-input">专属密钥</label>
                         <input type="text" id="login-key-input" class="modal-input" placeholder="XXXX-XXXX-XXXX-XXXX">
                     </div>
 
                     <div class="form-group">
-                        <label>安全验证</label>
+                        <label for="login-captcha-input">安全验证</label>
                         <div class="captcha-container">
                             <canvas id="login-captcha-canvas" width="200" height="50"></canvas>
-                            <button id="login-refresh-captcha" class="icon-btn" title="刷新验证码">
+                            <button id="login-refresh-captcha" class="icon-btn" type="button" title="刷新验证码" aria-label="刷新验证码">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                             </button>
                         </div>
@@ -362,10 +362,10 @@
                     <p>验证并生成您的专属身份密钥</p>
                     
                     <div class="form-group">
-                        <label>安全验证</label>
+                        <label for="register-captcha-input">安全验证</label>
                         <div class="captcha-container">
                             <canvas id="register-captcha-canvas" width="200" height="50"></canvas>
-                            <button id="register-refresh-captcha" class="icon-btn" title="刷新验证码">
+                            <button id="register-refresh-captcha" class="icon-btn" type="button" title="刷新验证码" aria-label="刷新验证码">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                             </button>
                         </div>
@@ -397,8 +397,8 @@
                     <form id="user-info-form">
                         <p class="privacy-form-note">端侧加密提示：提交后，服务端只会收到密文；密钥不会随请求发送。</p>
                         <div class="form-group">
-                            <label>打卡周期</label>
-                            <div class="radio-group">
+                            <span class="form-label" id="period-label">打卡周期</span>
+                            <div class="radio-group" role="radiogroup" aria-labelledby="period-label">
                                 <label class="radio-card">
                                     <input type="radio" name="period" value="24h" checked>
                                     <span>24小时</span>
@@ -458,7 +458,7 @@
     <!-- API Modal -->
     <div id="api-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="API 文档" style="display: none;">
         <div class="modal-content api-modal-content">
-            <button class="modal-close" onclick="document.getElementById('api-modal').style.display='none'">&times;</button>
+            <button class="modal-close" type="button" aria-label="关闭" onclick="document.getElementById('api-modal').style.display='none'">&times;</button>
             <div class="api-modal-tabs" role="tablist" aria-label="开发者资源">
                 <button class="api-modal-tab" type="button" role="tab" aria-selected="true" aria-controls="api-panel" data-api-tab="api">API</button>
                 <button class="api-modal-tab" type="button" role="tab" aria-selected="false" aria-controls="ai-panel" data-api-tab="ai">AI 开发说明</button>
@@ -611,9 +611,7 @@ Content-Type: application/json
             if (onlineBtn) {
                 onlineBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    if(onlineBtn.getAttribute('href') === '#') {
-                        openModal();
-                    }
+                    openModal();
                 });
             }
 
@@ -846,7 +844,7 @@ Content-Type: application/json
             loginSubmitBtn.addEventListener('click', async () => {
                 // 1. Verify Captcha
                 if (loginCaptchaInput.value.toUpperCase() !== currentLoginCaptcha) {
-                    alert('验证码错误，请重试');
+                    showToast('验证码错误，请重试');
                     initCaptcha('login');
                     loginCaptchaInput.value = '';
                     return;
@@ -855,7 +853,7 @@ Content-Type: application/json
                 // 2. Validate Key
                 const key = loginKeyInput.value.trim();
                 if (key.length < 10) {
-                    alert('请输入有效的密钥');
+                    showToast('请输入有效的密钥');
                     return;
                 }
 
@@ -905,7 +903,7 @@ Content-Type: application/json
                     loginDashboard.style.display = 'block';
 
                 } catch (err) {
-                    alert(err.message);
+                    showToast(err.message);
                     initCaptcha('login'); // Refresh captcha on failure
                     loginCaptchaInput.value = '';
                 } finally {
@@ -968,7 +966,7 @@ Content-Type: application/json
                         throw new Error('更新失败');
                     }
                 } catch (e) {
-                    alert('更新失败，请重试');
+                    showToast('更新失败，请重试');
                     periodSelect.style.display = 'none';
                     currentPeriodDisplay.parentElement.style.display = 'flex';
                 }
@@ -1013,7 +1011,7 @@ Content-Type: application/json
                         }, 3000);
                     }
                 } catch (e) {
-                    alert('打卡失败，请重试');
+                    showToast('打卡失败，请重试');
                 }
             });
 
@@ -1026,10 +1024,10 @@ Content-Type: application/json
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ id })
                         });
-                        alert('账户已安全删除。');
+                        showToast('账户已安全删除。');
                         closeModal();
                     } catch (e) {
-                        alert('删除失败');
+                        showToast('删除失败');
                     }
                 }
             });
@@ -1041,7 +1039,7 @@ Content-Type: application/json
                     registerStepStart.style.display = 'none';
                     stepKey.style.display = 'block';
                 } else {
-                    alert('验证码错误，请重试');
+                    showToast('验证码错误，请重试');
                     initCaptcha('register');
                     registerCaptchaInput.value = '';
                 }
@@ -1145,7 +1143,7 @@ Content-Type: application/json
                     stepSuccess.style.display = 'block';
 
                 } catch (err) {
-                    alert('注册失败: ' + err.message);
+                    showToast('注册失败: ' + err.message);
                 } finally {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
@@ -1153,6 +1151,46 @@ Content-Type: application/json
             });
 
         });
+    </script>
+    <div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>
+    <script>
+        // Inline toast instead of blocking showToast(); Esc closes dialogs; focus moves into opened dialogs.
+        (function () {
+            const region = document.getElementById('toast-region');
+            window.showToast = function (message, type) {
+                const el = document.createElement('div');
+                const isError = type === 'error' || /失败|错误|无效/.test(String(message));
+                el.className = 'toast' + (isError ? ' toast-error' : '');
+                el.textContent = String(message);
+                region.appendChild(el);
+                requestAnimationFrame(() => el.classList.add('is-visible'));
+                setTimeout(() => { el.classList.remove('is-visible'); setTimeout(() => el.remove(), 300); }, 3200);
+            };
+            const lastFocus = new WeakMap();
+            document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+                new MutationObserver(() => {
+                    const open = overlay.style.display !== 'none';
+                    if (open && !overlay.dataset.open) {
+                        overlay.dataset.open = '1';
+                        lastFocus.set(overlay, document.activeElement);
+                        setTimeout(() => {
+                            const visible = (sel) => [...overlay.querySelectorAll(sel)].find((el) => el.offsetParent !== null);
+                            const target = visible('input:not([type=radio])') || visible('button:not(.modal-close)');
+                            (target || overlay.querySelector('.modal-close'))?.focus();
+                        }, 30);
+                    } else if (!open && overlay.dataset.open) {
+                        delete overlay.dataset.open;
+                        lastFocus.get(overlay)?.focus?.();
+                    }
+                }).observe(overlay, { attributes: true, attributeFilter: ['style'] });
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key !== 'Escape') return;
+                document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+                    if (overlay.style.display !== 'none') overlay.style.display = 'none';
+                });
+            });
+        })();
     </script>
     <script type="module" src="liquid-glass.js"></script>
 </body>
