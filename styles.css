@@ -1618,3 +1618,9 @@ body {
   .z-banner .z-art-credit { left: 0; right: 0; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) { .z-slide, .z-slide.is-active { transition: none; filter: none; transform: none; } .z-dots button[aria-selected="true"]::after { animation: none; transform: none; } }
+
+/* Full-bleed banner */
+html, body { overflow-x: clip; }
+.z-banner { width: auto; margin-inline: calc(50% - 50vw); border-radius: 0; border-left: 0; border-right: 0; min-height: 380px; }
+.z-banner .z-art-credit { right: max(18px, calc(50vw - 600px)); }
+@media (max-width: 720px) { .z-banner { min-height: 320px; border-radius: 0; } }
