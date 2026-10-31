@@ -943,3 +943,7 @@ section[id], #faq { scroll-margin-top: 96px; }
 .toast.toast-error { border-color: rgba(226, 112, 96, 0.7); }
 .toast.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+
+.account-fields { grid-template-columns: minmax(0, 1fr) !important; }
+.account-fields > div { justify-content: flex-start !important; gap: 12px !important; }
+.account-fields dd { text-align: left !important; font-size: 0.875rem !important; white-space: normal !important; }

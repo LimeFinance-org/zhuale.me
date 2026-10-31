@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="抓了么是一个安全打卡项目：浏览器端加密预设信息，按所选周期打卡，外部触发由您单独提交。">
+    <meta name="description" content="抓了么：提前登记紧急联系人，万一出事被带走，发起上报后由专业刑事律师联系你的家人。资料浏览器端加密，上报前平台无法读取。">
     <meta name="theme-color" content="#171613">
-    <title>抓了么 · 安全打卡与数据边界</title>
+    <title>抓了么 · 出事时，有律师替你通知家人</title>
     <link rel="icon" type="image/svg+xml" href="assets/zhuale-mark.svg">
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="base.css">
@@ -34,13 +34,13 @@
     <main class="page-shell">
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-copy">
-                <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>抓了么 · 保护您的人身自由</p>
-                <h1 id="hero-title">您的安全，<span>我们的使命。</span></h1>
-                <p class="lead">触发前，平台无法读取您的预设内容</p>
-                <p class="hero-note"><span class="assurance-mark" aria-hidden="true">✓</span>浏览器端加密，主动触发后才进入协助流程。</p>
+                <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>抓了么 · 紧急情况律师协助</p>
+                <h1 id="hero-title">出事了，<span>有人报信。</span></h1>
+                <p class="lead">提前登记紧急联系人。一旦出事，发起上报后，我们安排专业刑事律师联系你的家人，协助后续处理。</p>
+                <p class="hero-note"><span class="assurance-mark" aria-hidden="true">✓</span>资料在浏览器端加密保存，上报前平台读不到任何内容。</p>
                 <div class="hero-actions">
-                    <a href="#process" class="btn btn-primary">在线使用</a>
-                    <a class="text-link" href="#requests">接口使用</a>
+                    <a href="#process" class="btn btn-primary">注册使用</a>
+                    <a class="text-link" href="#process">看看怎么用</a>
                 </div>
             </div>
 
@@ -51,17 +51,17 @@
                 <section class="record-sheet" id="record" aria-labelledby="record-title">
                     <div class="sheet-heading">
                         <div>
-                            <span class="sheet-caption">保护状态</span>
-                            <h2 id="record-title">触发前，平台无法读取</h2>
+                            <span class="sheet-caption">一句话说明</span>
+                            <h2 id="record-title">登记 → 打卡 → 出事上报</h2>
                         </div>
                         <span class="sheet-database">随时待命</span>
                     </div>
                     <dl class="account-fields">
-                        <div><dt><code>01</code></dt><dd>浏览器端加密 · 解密密钥只留在您的设备上</dd></div>
-                        <div><dt><code>02</code></dt><dd>密文保存 · 平台只处理哈希、周期和打卡时间</dd></div>
-                        <div><dt><code>03</code></dt><dd>主动触发 · 触发后才进入后续协助流程</dd></div>
+                        <div><dt><code>01</code></dt><dd>登记 · 紧急联系人加密保存，密钥只在你手里</dd></div>
+                        <div><dt><code>02</code></dt><dd>打卡 · 按自选周期确认平安</dd></div>
+                        <div><dt><code>03</code></dt><dd>上报 · 律师联系你的家人，启动协助</dd></div>
                     </dl>
-                    <p class="sheet-note">先保护数据边界，再谈后续协助。</p>
+                    <p class="sheet-note">不上报，就不会联系任何人。</p>
                 </section>
             </div>
         </section>
@@ -70,26 +70,26 @@
             <div class="process-heading">
                 <div>
                     <p class="process-eyebrow">01 · 使用流程</p>
-                    <h2 id="process-title">注册后，照着这几步用。</h2>
+                    <h2 id="process-title">三步做好准备，出事时一个请求上报。</h2>
                 </div>
-                <p>先保存密钥，再选周期。需要上报时，单独提交。</p>
+                <p>上报通过一个 API 请求发起，可以接入手机快捷指令、自动化工具，或交给信任的人代为提交。</p>
             </div>
             <div class="process-diagram" aria-label="抓了么使用流程图">
                 <ol class="process-steps">
                     <li class="process-step">
                         <span class="process-number">01</span>
-                        <div><h3>创建账户</h3><p>生成并保存你的专属密钥。</p></div>
+                        <div><h3>创建账户</h3><p>生成专属密钥，无需手机号或邮箱。</p></div>
                     </li>
                     <li class="process-step">
                         <span class="process-number">02</span>
-                        <div><h3>设置周期与资料</h3><p>选择打卡周期；预设资料先在浏览器加密。</p></div>
+                        <div><h3>登记紧急联系人</h3><p>填写联系人与联系方式，在浏览器加密后保存。</p></div>
                     </li>
                     <li class="process-step">
                         <span class="process-number">03</span>
                         <div><h3>按时回来打卡</h3><p>点一下只更新最近打卡时间。</p></div>
                     </li>
                 </ol>
-                <div class="process-question"><span aria-hidden="true">?</span><strong>需要通知联系人吗？</strong></div>
+                <div class="process-question"><span aria-hidden="true">?</span><strong>出事了，需要通知家人吗？</strong></div>
                 <div class="process-outcomes">
                     <article class="process-outcome process-continue">
                         <span class="outcome-tag">暂时不需要</span>
@@ -98,8 +98,8 @@
                     </article>
                     <article class="process-outcome process-report">
                         <span class="outcome-tag">由你主动选择</span>
-                        <h3>单独发起上报</h3>
-                        <p>只有你提交上报请求时，姓名与联系人信息才会以明文发送并保存。</p>
+                        <h3>发起上报，律师介入</h3>
+                        <p>上报后，律师会联系你的紧急联系人。只有这时，姓名与联系人信息才会以明文提交给平台。</p>
                     </article>
                 </div>
             </div>
