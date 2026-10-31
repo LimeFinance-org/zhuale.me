@@ -871,3 +871,14 @@ body { background: radial-gradient(ellipse 60rem 40rem at 85% -10%, rgba(95, 212
 }
 .z-hero h1.z-rotator .z-l1 { color: var(--z-text); }
 .z-manifesto .z-slide h2 { font-weight: 700; }
+
+/* Manifesto background: A4 / white paper movement illustration */
+.z-manifesto { isolation: isolate; background: #0c1522 !important; }
+.z-manifesto::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("assets/a4-movement.webp") center 35% / cover no-repeat; opacity: 0.55; filter: saturate(0.85); }
+.z-manifesto::after { content: ""; position: absolute; inset: 0; z-index: -1; background:
+  radial-gradient(ellipse 55% 70% at 50% 50%, rgba(10, 18, 30, 0.92), rgba(10, 18, 30, 0.55) 70%, rgba(10, 18, 30, 0.35)),
+  linear-gradient(180deg, rgba(10, 18, 30, 0.5), rgba(10, 18, 30, 0.2) 40%, rgba(10, 18, 30, 0.75)); }
+.z-manifesto { min-height: 460px; display: flex; flex-direction: column; justify-content: center; }
+.z-art-credit { position: absolute; right: 16px; bottom: 12px; margin: 0; color: rgba(233, 239, 247, 0.55); font-size: 0.75rem; }
+@media (max-width: 720px) { .z-manifesto::before { background-position: 62% center; opacity: 0.45; } }
+.z-manifesto .z-memorial { align-self: center; }
