@@ -534,6 +534,10 @@ body {
   margin-bottom: 28px;
 }
 
+.route-section {
+  scroll-margin-top: 24px;
+}
+
 .route-heading h2 {
   color: #183a54;
   font-size: clamp(2rem, 3.4vw, 3rem);
@@ -1661,6 +1665,7 @@ body {
 }
 
 .process-section {
+  scroll-margin-top: 24px;
   margin-top: clamp(36px, 5vw, 64px);
   padding: clamp(23px, 4.2vw, 42px);
   overflow: hidden;
