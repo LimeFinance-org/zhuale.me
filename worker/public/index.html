@@ -105,6 +105,49 @@
             <p class="process-footnote"><span aria-hidden="true">↳</span>没按时打卡，不会自动发送你的资料。</p>
         </section>
 
+        <section class="scenario-section" id="scenarios" aria-labelledby="scenarios-title">
+            <div class="scenario-intro">
+                <p class="scenario-eyebrow">使用场景</p>
+                <h2 id="scenarios-title">按自己的生活节奏，选择打卡方式。</h2>
+                <p class="scenario-lead">独居、独自出行，或希望接入自己的工具，都可以把周期打卡纳入日常安排。</p>
+                <p class="scenario-boundary">当前服务不提供位置追踪、短信提醒或逾期自动通知；需要求助时，请主动联系可信任的人或当地紧急服务。</p>
+            </div>
+            <ol class="scenario-list">
+                <li class="scenario-item">
+                    <span class="scenario-index" aria-hidden="true">01</span>
+                    <div class="scenario-copy">
+                        <h3>独居或长期异地生活</h3>
+                        <p>给自己设定固定周期，按时更新最近打卡时间；提前和亲友约好备用联系办法。</p>
+                    </div>
+                    <span class="scenario-type">日常安排</span>
+                </li>
+                <li class="scenario-item">
+                    <span class="scenario-index" aria-hidden="true">02</span>
+                    <div class="scenario-copy">
+                        <h3>独自出行或外地工作</h3>
+                        <p>出发前选好周期，把打卡安排告诉信任的人；页面不会记录你的位置。</p>
+                    </div>
+                    <span class="scenario-type">行程期间</span>
+                </li>
+                <li class="scenario-item">
+                    <span class="scenario-index" aria-hidden="true">03</span>
+                    <div class="scenario-copy">
+                        <h3>接入自己的自动化工具</h3>
+                        <p>通过 <code>POST /api/checkin</code> 接入自己维护的脚本；上报接口须由你明确调用。</p>
+                    </div>
+                    <span class="scenario-type">接口接入</span>
+                </li>
+                <li class="scenario-item">
+                    <span class="scenario-index" aria-hidden="true">04</span>
+                    <div class="scenario-copy">
+                        <h3>希望自己管理运行环境</h3>
+                        <p>可以自行部署开源项目，把服务放在自己管理的环境中，并自行设定数据访问边界。</p>
+                    </div>
+                    <span class="scenario-type">私有部署</span>
+                </li>
+            </ol>
+        </section>
+
         <section class="doc-section route-section" id="requests" aria-labelledby="requests-title">
             <div class="route-heading">
                 <h2 id="requests-title">打卡是日常，上报由你决定。</h2>

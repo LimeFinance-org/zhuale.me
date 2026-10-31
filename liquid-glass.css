@@ -1885,6 +1885,113 @@ body {
   color: #dfbd7f;
 }
 
+.scenario-section {
+  scroll-margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+  align-items: start;
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: clamp(48px, 7vw, 88px);
+}
+
+.scenario-intro {
+  max-width: 430px;
+}
+
+.scenario-eyebrow {
+  margin-bottom: 12px;
+  color: #d2b77f;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+.scenario-intro h2 {
+  color: #f6f0e5;
+  font-size: clamp(1.8rem, 3.1vw, 2.55rem);
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+}
+
+.scenario-lead {
+  margin-top: 16px;
+  color: #c4bcae;
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.scenario-boundary {
+  margin-top: 22px;
+  padding: 14px 0 0 15px;
+  border-top: 1px solid rgba(230, 202, 155, 0.2);
+  border-left: 2px solid rgba(216, 178, 111, 0.52);
+  color: #a9a194;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.scenario-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 246, 226, 0.16);
+  list-style: none;
+}
+
+.scenario-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 22px 13px;
+  border-bottom: 1px solid rgba(255, 246, 226, 0.13);
+  border-radius: 2px;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.scenario-item:hover {
+  border-bottom-color: rgba(225, 193, 135, 0.32);
+  background: linear-gradient(90deg, rgba(215, 177, 107, 0.07), transparent 78%);
+}
+
+.scenario-index {
+  padding-top: 2px;
+  color: #d0ad6b;
+  font-family: var(--font-outlier);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.scenario-copy h3 {
+  color: #f1e9dc;
+  font-size: 1.02rem;
+  letter-spacing: -0.02em;
+}
+
+.scenario-copy p {
+  max-width: 54ch;
+  margin-top: 7px;
+  color: #bcb3a4;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.scenario-copy code {
+  color: #e6c987;
+  font-family: var(--font-outlier);
+  font-size: 0.8rem;
+}
+
+.scenario-type {
+  margin-top: 1px;
+  padding: 4px 9px;
+  border: 1px solid rgba(231, 209, 171, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 249, 236, 0.045);
+  color: #c9b995;
+  font-size: 0.69rem;
+  white-space: nowrap;
+}
+
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header,
   .hero-kicker,
@@ -1914,7 +2021,8 @@ body {
   .process-section,
   .process-step,
   .process-question,
-  .process-outcome {
+  .process-outcome,
+  .scenario-type {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
     background-color: #27241f;
@@ -1926,6 +2034,19 @@ body {
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .scenario-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .scenario-intro {
+    max-width: 620px;
+  }
+
+  .scenario-boundary {
+    max-width: 74ch;
   }
 }
 
@@ -2012,5 +2133,37 @@ body {
   .process-footnote {
     margin-top: 15px;
     font-size: 0.77rem;
+  }
+
+  .scenario-section {
+    gap: 13px;
+    margin-top: 55px;
+  }
+
+  .scenario-intro h2 {
+    max-width: 16ch;
+    font-size: 1.8rem;
+  }
+
+  .scenario-lead {
+    margin-top: 11px;
+    font-size: 0.9rem;
+  }
+
+  .scenario-boundary {
+    margin-top: 16px;
+    font-size: 0.78rem;
+  }
+
+  .scenario-item {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 10px;
+    padding: 18px 5px;
+  }
+
+  .scenario-type {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: -2px;
   }
 }
