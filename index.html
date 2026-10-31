@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="抓了么：提前登记紧急联系人，万一出事被带走，发起上报后由专业刑事律师联系你的家人。资料浏览器端加密，上报前平台无法读取。">
+    <meta name="description" content="抓了么：定期打卡报平安，超时未打卡自动上报，专业刑事律师联系你的家人。资料浏览器端加密。">
     <meta name="theme-color" content="#0f1724">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="抓了么">
     <meta property="og:title" content="抓了么 · 出事时，有律师替你通知家人">
-    <meta property="og:description" content="提前登记紧急联系人，万一出事被带走，发起上报后由专业刑事律师联系你的家人。资料浏览器端加密，上报前平台无法读取。">
+    <meta property="og:description" content="抓了么：定期打卡报平安，超时未打卡自动上报，专业刑事律师联系你的家人。资料浏览器端加密。">
     <meta property="og:url" content="https://zhuale.me/">
     <meta property="og:image" content="https://zhuale.me/assets/a4-movement.webp">
     <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
         </a>
         <nav class="site-nav z-nav" aria-label="主导航">
             <a href="#process">使用流程</a>
-            <a href="#scenarios">适用人群</a>
+            <a href="#trigger">触发方式</a>
             <a href="#privacy">隐私边界</a>
             <a href="#faq">常见问题</a>
             <button id="api-btn" class="nav-action" type="button">API</button>
@@ -62,6 +62,7 @@
 
     <nav id="z-mobile-menu" class="z-mobile-menu" aria-label="移动端导航" hidden>
         <a href="#process">使用流程</a>
+        <a href="#trigger">触发方式</a>
         <a href="#scenarios">适用人群</a>
         <a href="#privacy">隐私边界</a>
         <a href="#requests">API 接入</a>
@@ -73,45 +74,24 @@
         <section class="z-hero" aria-labelledby="hero-title">
             <div class="z-hero-copy">
                 <p class="z-badge"><svg class="z-ic"><use href="#i-chain"/></svg>反对任意拘押 · 紧急律师协助</p>
-                <h1 id="hero-title" class="z-rotator"><span class="z-l1">出事了，</span><br><span class="z-l2">有人替你报信。</span><canvas class="z-particles" aria-hidden="true"></canvas></h1>
-                <p class="z-lead">提前登记紧急联系人。一旦被带走，发起上报后，我们安排专业刑事律师联系你的家人，协助后续处理。</p>
+                <h1 id="hero-title">出事了，<br><span>有人替你报信。</span></h1>
+                <p class="z-tagline z-rotator" aria-live="off"><span class="z-l1">被带走时，</span><span class="z-l2">你不是一个人。</span><canvas class="z-particles" aria-hidden="true"></canvas></p>
+                <p class="z-lead">定期打卡报平安。<strong>超时未打卡，系统自动上报</strong>，专业刑事律师会联系你登记的紧急联系人，协助后续处理。</p>
                 <div class="z-actions">
                     <a href="#process" class="btn btn-primary z-btn-primary">注册使用</a>
                     <a class="z-btn-ghost" href="#process">看看怎么用</a>
                 </div>
-                <ul class="z-assure">
-                    <li><svg class="z-ic"><use href="#i-lock"/></svg>浏览器端加密</li>
-                    <li><svg class="z-ic"><use href="#i-key"/></svg>无需手机号</li>
-                    <li><svg class="z-ic"><use href="#i-code"/></svg>代码开源</li>
-                </ul>
             </div>
 
-            <div class="z-hero-visual" aria-hidden="true">
-                <div class="z-emblem">
-                    <div class="z-ring z-ring-1"></div>
-                    <div class="z-ring z-ring-2"></div>
-                    <svg class="z-emblem-shield" viewBox="0 0 120 140">
-                        <defs>
-                            <linearGradient id="zg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8ff0d6"/><stop offset="1" stop-color="#3aa98e"/></linearGradient>
-                        </defs>
-                        <path d="M60 6 12 24v38c0 33 20 57 48 70 28-13 48-37 48-70V24L60 6Z" fill="rgba(95,212,182,.08)" stroke="url(#zg)" stroke-width="3"/>
-                        <g fill="none" stroke="url(#zg)" stroke-width="5" stroke-linecap="round">
-                            <path d="M40 78a12 12 0 0 1 0-17l6-6"/>
-                            <path d="M80 56a12 12 0 0 1 0 17l-6 6"/>
-                            <path d="M50 51l-4-6M44 58l-7-2M70 83l4 6M76 76l7 2" stroke-width="3"/>
-                        </g>
-                    </svg>
-                </div>
-                <div class="z-status-card">
-                    <div class="z-status-top">
-                        <span class="z-dot"></span><strong>保护中</strong><span class="z-muted">· 资料已加密</span>
-                    </div>
-                    <ol class="z-mini-steps">
-                        <li><span>01</span>登记紧急联系人</li>
-                        <li><span>02</span>按周期打卡报平安</li>
-                        <li><span>03</span>出事时发起上报</li>
+            <div class="z-hero-visual">
+                <div class="z-demo" role="img" aria-label="示意：每天打卡报平安；超时未打卡时系统自动上报，律师收到后联系你的家人。">
+                    <div class="z-demo-head"><span class="z-dot"></span><strong>如果出事，会发生什么</strong><span class="z-demo-tag">示意</span></div>
+                    <ol class="z-demo-list">
+                        <li class="is-ok"><span class="z-demo-time">周一 21:00</span><span class="z-demo-ic"><svg class="z-ic"><use href="#i-shield"/></svg></span><div><strong>你打卡报平安</strong><small>周期 24 小时，状态正常</small></div></li>
+                        <li class="is-warn"><span class="z-demo-time">周二 21:00</span><span class="z-demo-ic"><svg class="z-ic"><use href="#i-clock"/></svg></span><div><strong>超时未打卡</strong><small>系统判定失联，自动上报</small></div></li>
+                        <li><span class="z-demo-time">周二 21:05</span><span class="z-demo-ic"><svg class="z-ic"><use href="#i-scale"/></svg></span><div><strong>律师收到上报</strong><small>启动协助预案</small></div></li>
+                        <li><span class="z-demo-time">周二 21:30</span><span class="z-demo-ic"><svg class="z-ic"><use href="#i-contact"/></svg></span><div><strong>律师联系你的家人</strong><small>告知情况，协助后续处理</small></div></li>
                     </ol>
-                    <p class="z-muted z-small">不上报，就不会联系任何人。</p>
                 </div>
             </div>
         </section>
@@ -121,23 +101,37 @@
             <article><svg class="z-ic-lg"><use href="#i-lock"/></svg><div><h3>本地加密存储</h3><p>AES-GCM 浏览器端加密，服务端只存密文。</p></div></article>
             <article><svg class="z-ic-lg"><use href="#i-scale"/></svg><div><h3>专业刑事律师</h3><p>收到上报后，律师团队启动协助预案。</p></div></article>
             <article><svg class="z-ic-lg"><use href="#i-code"/></svg><div><h3>代码完全开源</h3><p>无后门，可审计，也可以自行部署。</p></div></article>
-            <article><svg class="z-ic-lg"><use href="#i-mute"/></svg><div><h3>不上报不联系</h3><p>错过打卡不会自动发送任何资料。</p></div></article>
+            <article><svg class="z-ic-lg"><use href="#i-clock"/></svg><div><h3>超时自动上报</h3><p>来不及求助也没关系，失联即触发。</p></div></article>
         </section>
 
         <!-- Process -->
         <section class="z-section" id="process" aria-labelledby="process-title">
             <header class="z-head">
                 <p class="z-eyebrow">01 · 使用流程</p>
-                <h2 id="process-title"><span class="z-nb">三步做好准备，</span><span class="z-nb">出事时一个请求上报</span></h2>
+                <h2 id="process-title"><span class="z-nb">三步做好准备，</span><span class="z-nb">剩下的交给我们</span></h2>
                 <p class="z-sub">整个准备过程不到 2 分钟。</p>
             </header>
             <ol class="z-timeline">
                 <li><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-key"/></svg></div><span class="z-step-no">步骤 1</span><h3>创建账户</h3><p>生成专属密钥，无需手机号或邮箱。请妥善保存。</p></li>
                 <li><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-contact"/></svg></div><span class="z-step-no">步骤 2</span><h3>登记紧急联系人</h3><p>填写联系人与联系方式，在浏览器加密后保存。</p></li>
-                <li><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-clock"/></svg></div><span class="z-step-no">步骤 3</span><h3>按周期打卡</h3><p>24 小时、48 小时、72 小时或一周，点一下报平安。</p></li>
-                <li class="z-step-alert"><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-send"/></svg></div><span class="z-step-no">出事时</span><h3>发起上报，律师介入</h3><p>通过快捷指令、自动化工具或信任的人提交，律师联系你的家人。</p></li>
+                <li><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-clock"/></svg></div><span class="z-step-no">步骤 3</span><h3>按周期打卡报平安</h3><p>24 小时、48 小时、72 小时或一周，点一下表示你是安全的。</p></li>
+                <li class="z-step-alert"><div class="z-step-icon"><svg class="z-ic-lg"><use href="#i-send"/></svg></div><span class="z-step-no">超时未打卡</span><h3>自动上报，律师介入</h3><p>系统自动上报，律师联系你登记的紧急联系人。</p></li>
             </ol>
-            <p class="z-note"><svg class="z-ic"><use href="#i-shield"/></svg>没按时打卡，不会自动发送你的资料。只有上报时，姓名与联系人信息才会以明文提交给平台。</p>
+            <p class="z-note"><svg class="z-ic"><use href="#i-shield"/></svg>请选择一个你能稳定做到的打卡周期。按时打卡时，你的资料始终是加密的，平台读不到。</p>
+        </section>
+
+        <!-- Triggers -->
+        <section class="z-section" id="trigger" aria-labelledby="trigger-title">
+            <header class="z-head">
+                <p class="z-eyebrow">02 · 触发方式</p>
+                <h2 id="trigger-title"><span class="z-nb">手机被收走了，</span><span class="z-nb">怎么上报？</span></h2>
+                <p class="z-sub">不需要你在现场做任何操作。以下任一方式都会触发上报。</p>
+            </header>
+            <div class="z-triggers">
+                <article class="z-trg-main"><span class="z-trg-badge">推荐 · 默认开启</span><svg class="z-ic-lg"><use href="#i-clock"/></svg><h3>超时未打卡，自动上报</h3><p>被带走后无法打卡，周期一到系统自动上报。你什么都不用做。</p></article>
+                <article><svg class="z-ic-lg"><use href="#i-users"/></svg><h3>信任的人代为上报</h3><p>家人或朋友发现你失联，可以代你提交上报，不必等到周期结束。</p></article>
+                <article><svg class="z-ic-lg"><use href="#i-send"/></svg><h3>快捷指令 / 自动化</h3><p>通过 API 接入手机快捷指令或自动化工具，紧急时一键触发。</p></article>
+            </div>
         </section>
 
         <!-- Manifesto -->
@@ -163,7 +157,7 @@
         <!-- Scenarios -->
         <section class="z-section" id="scenarios" aria-labelledby="scenarios-title">
             <header class="z-head">
-                <p class="z-eyebrow">02 · 适用人群</p>
+                <p class="z-eyebrow">03 · 适用人群</p>
                 <h2 id="scenarios-title">如果你面临这些风险</h2>
             </header>
             <ul class="z-grid-5">
@@ -178,27 +172,29 @@
         <!-- Privacy -->
         <section class="z-section" id="privacy" aria-labelledby="privacy-title">
             <header class="z-head">
-                <p class="z-eyebrow">03 · 隐私边界</p>
+                <p class="z-eyebrow">04 · 隐私边界</p>
                 <h2 id="privacy-title"><span class="z-nb">平台能看到什么，</span><span class="z-nb">一目了然</span></h2>
-                <p class="z-sub">解密密钥只在你的设备上。我们不会主动向任何机构提供触发前的可读内容。</p>
+                <p class="z-sub">按时打卡期间，解密密钥只在你的设备上。我们不会主动向任何机构提供可读内容。</p>
             </header>
-            <div class="z-privacy">
-                <article class="z-pv-ok"><span class="z-tag">上报前 · 平台可见</span><h3>仅元数据</h3><p>账户哈希、打卡周期、最近打卡时间</p></article>
-                <article class="z-pv-lock"><span class="z-tag">上报前 · 平台不可读</span><h3><svg class="z-ic"><use href="#i-lock"/></svg>全部加密</h3><p>姓名、联系人、联系方式、备注</p></article>
-                <article class="z-pv-send"><span class="z-tag">上报后 · 才会接收</span><h3>你主动提交的</h3><p>仅处理上报请求中的协助信息</p></article>
-            </div>
+            <ol class="z-flow">
+                <li><span class="z-flow-ic"><svg class="z-ic-lg"><use href="#i-key"/></svg></span><h3>你的设备</h3><p>填写资料，用只在你手里的密钥加密</p></li>
+                <li class="z-flow-arrow" aria-hidden="true"><span>加密后上传</span></li>
+                <li class="z-flow-lock"><span class="z-flow-ic"><svg class="z-ic-lg"><use href="#i-lock"/></svg></span><h3>平台服务器</h3><p>只看到密文、打卡周期和打卡时间，读不到姓名和联系人</p></li>
+                <li class="z-flow-arrow z-flow-arrow-warn" aria-hidden="true"><span>超时或上报后</span></li>
+                <li class="z-flow-warn"><span class="z-flow-ic"><svg class="z-ic-lg"><use href="#i-scale"/></svg></span><h3>协助律师</h3><p>收到协助所需的信息，联系你的紧急联系人</p></li>
+            </ol>
         </section>
 
         <!-- API -->
         <section class="z-section" id="requests" aria-labelledby="requests-title">
             <header class="z-head">
-                <p class="z-eyebrow">04 · 开发者</p>
+                <p class="z-eyebrow">05 · 开发者</p>
                 <h2 id="requests-title">API 接入</h2>
                 <p class="z-sub">标准 HTTP 接口，可接入快捷指令、自动化工具；源码公开，也可以自行部署。</p>
             </header>
             <div class="z-api">
                 <article><div class="z-api-top"><h3>日常打卡</h3><code>POST /api/checkin</code></div><p>只更新最近打卡时间，不会提交姓名、联系人或预设信息。</p></article>
-                <article class="z-api-sos"><div class="z-api-top"><h3>主动上报</h3><code>GET · POST /api/sos</code></div><p>姓名、联系人和联系方式会随上报请求以明文提交并保存。不会自动联系任何人。</p>
+                <article class="z-api-sos"><div class="z-api-top"><h3>主动上报</h3><code>GET · POST /api/sos</code></div><p>姓名、联系人和联系方式随请求提交，可用于信任的人代为上报或接入快捷指令。</p>
                     <button id="api-open-details" class="z-link" type="button">查看字段和请求示例 →</button></article>
             </div>
         </section>
@@ -219,7 +215,7 @@
         <!-- FAQ -->
         <section class="z-section" id="faq" aria-labelledby="legacy-faq-title">
             <header class="z-head">
-                <p class="z-eyebrow">05 · 常见问题</p>
+                <p class="z-eyebrow">06 · 常见问题</p>
                 <h2 id="legacy-faq-title">你可能想知道</h2>
             </header>
             <div class="z-faq" tabindex="0" aria-label="常见问题，可左右滑动">
@@ -1156,7 +1152,6 @@ Content-Type: application/json
             if (!h1) return;
             const l1 = h1.querySelector('.z-l1'), l2 = h1.querySelector('.z-l2'), cv = h1.querySelector('.z-particles');
             const phrases = [
-                ['出事了，', '有人替你报信。'],
                 ['被带走时，', '你不是一个人。'],
                 ['失联之前，', '先把退路留好。'],
                 ['沉默之时，', '有人替你发声。'],
@@ -1280,10 +1275,22 @@ Content-Type: application/json
             menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
         })();
+        // Hero demo: reveal timeline steps one by one, then loop.
+        (function () {
+            const items = [...document.querySelectorAll('.z-demo-list li')];
+            if (!items.length) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { items.forEach((li) => li.classList.add('is-on')); return; }
+            let n = 0;
+            const step = () => {
+                if (n < items.length) { items[n].classList.add('is-on'); n += 1; setTimeout(step, 1100); }
+                else setTimeout(() => { items.forEach((li) => li.classList.remove('is-on')); n = 0; setTimeout(step, 600); }, 4000);
+            };
+            setTimeout(step, 500);
+        })();
         // Subtle reveal on scroll.
         (function () {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-            const els = document.querySelectorAll('.z-trust, .z-head, .z-timeline > li, .z-manifesto, .z-grid-5 > li, .z-privacy > article, .z-api > article, .z-stats, .z-faq > article, .z-cta');
+            const els = document.querySelectorAll('.z-trust, .z-head, .z-timeline > li, .z-manifesto, .z-grid-5 > li, .z-triggers > article, .z-flow > li, .z-api > article, .z-stats, .z-faq > article, .z-cta');
             const io = new IntersectionObserver((entries) => entries.forEach((e) => {
                 if (e.isIntersecting) { const t = e.target; t.classList.add('is-in'); io.unobserve(t); setTimeout(() => { t.style.transitionDelay = ''; }, 900); }
             }), { rootMargin: '0px 0px -8% 0px' });
