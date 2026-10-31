@@ -1255,7 +1255,7 @@ Content-Type: application/json
             if (!root) return;
             const slides = [...root.querySelectorAll('.z-slide')], dots = [...root.querySelectorAll('.z-dots button')];
             const SECONDS = 7;
-            let idx = 0, left = SECONDS, paused = false;
+            let idx = 0, left = SECONDS;
             root.style.setProperty('--z-slide-dur', SECONDS + 's');
             const show = (i) => {
                 idx = (i + slides.length) % slides.length;
@@ -1266,9 +1266,7 @@ Content-Type: application/json
                 left = SECONDS;
             };
             dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
-            root.addEventListener('mouseenter', () => { paused = true; root.classList.add('is-paused'); });
-            root.addEventListener('mouseleave', () => { paused = false; root.classList.remove('is-paused'); });
-            setInterval(() => { if (paused || document.hidden) return; left -= 1; if (left <= 0) show(idx + 1); }, 1000);
+            setInterval(() => { if (document.hidden) return; left -= 1; if (left <= 0) show(idx + 1); }, 1000);
         })();
         // Subtle reveal on scroll.
         (function () {

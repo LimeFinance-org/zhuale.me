@@ -1606,7 +1606,6 @@ body {
 .z-dots button { position: relative; overflow: hidden; width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: rgba(233, 239, 247, 0.3); cursor: pointer; transition: width 300ms ease; }
 .z-dots button[aria-selected="true"] { width: 40px; background: rgba(242, 180, 92, 0.25); }
 .z-dots button[aria-selected="true"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--z-candle); transform-origin: left; animation: z-fill var(--z-slide-dur, 7s) linear forwards; }
-.z-banner.is-paused .z-dots button::after { animation-play-state: paused; }
 @keyframes z-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .z-banner .z-memorial { margin-top: 20px; background: rgba(10, 18, 30, 0.55); }
 .z-banner .z-art-credit { position: absolute; right: 18px; bottom: 12px; margin: 0; color: rgba(233, 239, 247, 0.5); font-size: 0.75rem; }
