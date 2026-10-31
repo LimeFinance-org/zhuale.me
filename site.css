@@ -858,7 +858,6 @@ body { background: radial-gradient(ellipse 60rem 40rem at 85% -10%, rgba(95, 212
 .z-count-bar { position: relative; width: 64px; height: 3px; overflow: hidden; border-radius: 3px; background: rgba(148, 178, 214, 0.18); }
 .z-count-bar i { position: absolute; inset: 0; background: var(--z-candle); transform-origin: left; }
 .z-count-num { min-width: 1ch; color: var(--z-candle); font-weight: 700; }
-.z-manifesto.is-paused .z-countdown::after { content: "· 已暂停"; }
 @media (prefers-reduced-motion: reduce) { .z-slide, .z-slide.is-active { transition: none; filter: none; transform: none; } }
 
 /* FAQ: all expanded, one row, swipe on small screens */
@@ -882,3 +881,4 @@ body { background: radial-gradient(ellipse 60rem 40rem at 85% -10%, rgba(95, 212
 .z-art-credit { position: absolute; right: 16px; bottom: 12px; margin: 0; color: rgba(233, 239, 247, 0.55); font-size: 0.75rem; }
 @media (max-width: 720px) { .z-manifesto::before { background-position: 62% center; opacity: 0.45; } }
 .z-manifesto .z-memorial { align-self: center; }
+.z-count-bar { width: 80px; }

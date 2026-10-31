@@ -141,7 +141,7 @@
             </div>
             <div class="z-slide-ctrl">
                 <div class="z-dots" role="tablist" aria-label="切换标语"><button type="button" role="tab" aria-label="第 1 条" aria-selected="true"></button><button type="button" role="tab" aria-label="第 2 条"></button><button type="button" role="tab" aria-label="第 3 条"></button><button type="button" role="tab" aria-label="第 4 条"></button><button type="button" role="tab" aria-label="第 5 条"></button></div>
-                <span class="z-countdown"><span class="z-count-bar"><i></i></span><span class="z-count-num">8</span> 秒后切换</span>
+                <span class="z-countdown" aria-hidden="true"><span class="z-count-bar"><i></i></span></span>
             </div>
             <p class="z-memorial"><svg class="z-ic"><use href="#i-candle"/></svg>铭记 1989 · 6 · 4，铭记每一位因言获罪的人。</p>
             <p class="z-art-credit">背景：乌鲁木齐中路 · 白纸运动，2022</p>
@@ -1246,7 +1246,7 @@ Content-Type: application/json
                 left = SECONDS; tick(true);
             };
             const tick = (reset) => {
-                num.textContent = left;
+                if (num) num.textContent = left;
                 bar.style.transition = 'none';
                 bar.style.transform = `scaleX(${left / SECONDS})`;
                 if (!reset || true) { void bar.offsetWidth; bar.style.transition = paused ? 'none' : 'transform 1s linear'; bar.style.transform = `scaleX(${Math.max(0, left - 1) / SECONDS})`; }
